@@ -1,13 +1,12 @@
 import { staticData } from "@/api/data";
 import CompanyVerticalList from "@/components/CompanyVerticalList/CompanyVerticalList";
-import NewsCard from "@/components/NewsCard/NewsCard";
 import NewsSection from "@/components/NewsSection/NewsSection";
 import StockCard from "@/components/StockCard/StockCard";
 import TabsWithStockChart from "@/components/TabsWithStockChart/TabsWithStockChart";
 import { Button } from "@/components/ui/button";
 import { generateStockDataForTimeframe } from "@/lib/utils";
-import { Series, StaticDataTypes, StockData, Timeframe } from "@/types";
-import { useEffect, useState } from "react";
+import { Series, StockData, Timeframe } from "@/types";
+import { useEffect, useMemo, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 
 const data: Series[] = [
@@ -73,45 +72,55 @@ const data: Series[] = [
 	}))
 }));
 
+console.log("data 1", data);
+
 type Params = {
 	symbol: string;
 };
 
 export default function HomePage() {
 	const location = useLocation();
-	const searchParams = new URLSearchParams(location.search);
-	const { symbol } = useParams<Params>();
-	const windowParam: Timeframe | null | string = searchParams.get("window"); // Get the "window" parameter
+	const { symbol: stockSymbol } = useParams<Params>();
+	const windowParam =
+		new URLSearchParams(location.search)?.get("window") || "1D";
 
-	const [dataSet, setDataSet] = useState<StockData | null>(null);
-	const [graphDataSet, setGraphDataSet] = useState([]);
+	const [dataSet, setDataSet] = useState<StockData | null>(() => {
+		const initialData = staticData.find((data) => data[stockSymbol as string]);
+		return initialData ? initialData[stockSymbol as string] : null;
+	});
+	const [graphDataSet, setGraphDataSet] = useState<Series[]>([]);
 
-	const transformDataForVerticalList = () => {
-		const data = staticData[0]; // Assuming staticData is an array with a single object
+	const companyData = useMemo(() => {
+		if (staticData.length === 0) return []; // Ensure staticData isn't empty
+		const data = staticData[0];
 		return Object.keys(data).map((key) => ({
-			symbol: key,
 			...data[key].companyInfo,
-			...data[key] // Spread the rest of the stock data
+			...data[key],
+			symbol: key
 		}));
-	};
-
-	const companyData = transformDataForVerticalList();
+	}, []);
 
 	useEffect(() => {
-		const graphData = generateStockDataForTimeframe(
-			dataSet?.lastPrice,
-			windowParam
-		);
-		setGraphDataSet(graphData[0]);
-	}, [windowParam, dataSet?.lastPrice]);
+		if (typeof dataSet?.lastPrice === "number") {
+			const graphData = generateStockDataForTimeframe(
+				dataSet.lastPrice,
+				windowParam,
+				dataSet.companyInfo.symbol
+			);
+			setGraphDataSet(graphData);
+		}
+	}, [windowParam, dataSet?.lastPrice, dataSet?.companyInfo?.symbol]);
+
+	useEffect(() => {
+		if (!stockSymbol) {
+			setDataSet(null);
+			return;
+		}
+		const stockData = staticData.find((data) => data[stockSymbol]);
+		setDataSet(stockData ? stockData[stockSymbol] : null);
+	}, [stockSymbol]);
 
 	console.log("graphDataSet", graphDataSet);
-
-	useEffect(() => {
-		// Find the relevant data by symbol
-		const stockData = staticData.find((data) => data[symbol]);
-		setDataSet(stockData ? stockData[symbol] : {});
-	}, [symbol]); // This effect depends on `symbol` and runs whenever it changes
 
 	return (
 		<div className="bg-gray-100">
@@ -146,7 +155,11 @@ export default function HomePage() {
 				<div className="grid grid-cols-1 gap-4 py-4 lg:grid-cols-3">
 					<div className="lg:col-span-2">
 						<div>
-							<TabsWithStockChart data={data} />
+							{graphDataSet.length ? (
+								<TabsWithStockChart data={graphDataSet} />
+							) : (
+								<>Loading...</>
+							)}
 						</div>
 						<div className="mt-10 w-full">
 							<div className="my-3 text-2xl font-bold">In the news</div>

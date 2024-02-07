@@ -4,6 +4,7 @@ export type DataPoint = {
 };
 
 export type Series = {
+	id: string;
 	data: DataPoint[];
 };
 
