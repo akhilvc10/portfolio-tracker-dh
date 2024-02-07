@@ -1,4 +1,5 @@
 import { cn } from "@/lib/utils";
+import { MouseEventHandler } from "react";
 
 // Define the types for the props
 interface CompanyCardProps {
@@ -7,6 +8,7 @@ interface CompanyCardProps {
 	stockValue: string;
 	stockChange: string;
 	stockChangeDirection: "increase" | "decrease";
+	onClickCard: MouseEventHandler<HTMLDivElement> | undefined;
 }
 
 // Define the Card component with props
@@ -15,7 +17,8 @@ const CompanyCard: React.FC<CompanyCardProps> = ({
 	companyName,
 	stockValue,
 	stockChange,
-	stockChangeDirection
+	stockChangeDirection,
+	onClickCard
 }) => {
 	// Determine color based on stock change direction
 	const stockChangeColor =
@@ -23,7 +26,10 @@ const CompanyCard: React.FC<CompanyCardProps> = ({
 	const stockChangeIcon = stockChangeDirection === "increase" ? "▲" : "▼";
 
 	return (
-		<div className="m-4 max-w-sm cursor-pointer overflow-hidden  rounded-[10px] border border-solid border-[rgb(218,220,224)] bg-white p-6">
+		<div
+			onClick={onClickCard}
+			className="m-4 max-w-sm cursor-pointer overflow-hidden  rounded-[10px] border border-solid border-[rgb(218,220,224)] bg-white p-6"
+		>
 			{/* Top Bar with status and symbol */}
 			<div className="mb-4 flex items-center">
 				<div

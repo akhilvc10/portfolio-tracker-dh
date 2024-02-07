@@ -1,14 +1,11 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { StockChart } from "../StockChart/StockChart";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import no_data from "../../assets/no_data.svg";
 import { Series } from "@/types";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const adjustDataForTab = (data: Series[], tabValue: string): Series[] => {
-	console.log(
-		"🚀 ~ file: TabsWithStockChart.tsx ~ line 8 ~ adjustDataForTab ~ tabValue",
-		tabValue
-	);
 	// Your adjustment logic here
 	return data;
 };
@@ -19,7 +16,23 @@ interface TabsWithStockChartProps {
 }
 
 const TabsWithStockChart: React.FC<TabsWithStockChartProps> = ({ data }) => {
-	const [activeTab, setActiveTab] = useState<string>("1D");
+	const location = useLocation();
+	const searchParams = new URLSearchParams(location.search);
+	const windowParam = searchParams.get("window"); // Get the "window" parameter
+
+	const [activeTab, setActiveTab] = useState<string>(windowParam || "1D");
+
+	const navigate = useNavigate();
+
+	useEffect(() => {
+		// This effect ensures that the component responds to direct URL entries and URL changes
+		const currentWindowParam = new URLSearchParams(location.search).get(
+			"window"
+		);
+		if (currentWindowParam && currentWindowParam !== activeTab) {
+			setActiveTab(currentWindowParam);
+		}
+	}, [location, activeTab]);
 
 	const adjustedChartData: Series[] = useMemo(
 		() => adjustDataForTab(data, activeTab),
@@ -27,6 +40,7 @@ const TabsWithStockChart: React.FC<TabsWithStockChartProps> = ({ data }) => {
 	);
 
 	const onChangeTab = (currentTab: string) => {
+		navigate(`?window=${currentTab}`);
 		setActiveTab(currentTab);
 	};
 

@@ -1,4 +1,6 @@
 import CompanyCard from "../CompanyCard/CompanyCard";
+import { useNavigate } from "react-router-dom";
+
 import {
 	Carousel,
 	CarouselContent,
@@ -89,7 +91,13 @@ const companyData: CompanyData[] = [
 	}
 ];
 
-export default function CompanyVerticalList() {
+export default function CompanyVerticalList({ data }) {
+	const navigate = useNavigate();
+
+	const onClickCardHandler = (symbol: string) => {
+		navigate(`/${symbol}?window=1D`);
+	};
+
 	return (
 		<Carousel
 			opts={{
@@ -98,14 +106,15 @@ export default function CompanyVerticalList() {
 			className="w-full"
 		>
 			<CarouselContent>
-				{companyData.map((company, index) => (
+				{data.map((company, index) => (
 					<CarouselItem className="md:basis-1/2 lg:basis-1/3" key={index}>
 						<CompanyCard
 							symbol={company.symbol}
-							companyName={company.companyName}
-							stockValue={company.stockValue}
-							stockChange={company.stockChange}
+							companyName={company.name} // Adjusted according to your companyInfo structure
+							stockValue={company.lastPrice}
+							stockChange={company.change}
 							stockChangeDirection={company.stockChangeDirection}
+							onClickCard={() => onClickCardHandler(company.symbol)}
 						/>
 					</CarouselItem>
 				))}
