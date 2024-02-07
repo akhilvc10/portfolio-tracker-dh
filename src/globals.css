@@ -33,6 +33,14 @@
     --ring: 222.2 84% 4.9%;
  
     --radius: 0.5rem;
+
+     /* Custom */
+  --bg-color: #FBFBFB;
+  --card-bg: #FFFFFF;
+  --color-typography-1: #101010;
+  --color-typography-2: #0A0A0A;
+  --border-color: #F2F3F5;
+  --primary-color: #D68000;
   }
  
   .dark {
@@ -63,6 +71,15 @@
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
     --ring: 212.7 26.8% 83.9%;
+
+     /* Custom */
+
+     --bg-color: #0A0A0A;
+     --card-bg: #000000;
+     --color-typography-1: #A1A1A1;
+     --color-typography-2: #EDEDED;
+     --border-color: #3E3E3E;
+     --primary-color: #FFBD3D;
   }
 }
  
@@ -73,4 +90,19 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+svg text {
+  fill: #333; /* Color of the text */
+  font-size: 12px; /* Size of the text */
+  visibility: visible; /* Ensures text is not hidden */
+}
+
+/* Specific classes applied to axis labels */
+.nivo-axis-label {
+  fill: #333;
+}
+
+/* In case of conflicts */
+.nivo-axis-label {
+  fill: #333 !important; /* Overrides other styles due to specificity */
 }
