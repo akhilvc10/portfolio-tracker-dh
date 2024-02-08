@@ -54,7 +54,6 @@ export function generateStockDataForTimeframe(baseValue: number, timeframe: Time
       y: parseFloat(stockPrice.toFixed(2))
     });
 
-    // Move to next time interval
     currentTime = new Date(currentTime.getTime() + intervalMillis);
   }
 

@@ -113,9 +113,10 @@ export const staticData : StockDataTypes[] = [{
       industry: "Automotive",
       ceo: "Elon Musk",
       symbol: "TSLA",
+      description: "Tesla, Inc. is an American multinational automotive and clean energy company headquartered in Austin, Texas, which designs, manufactures and sells electric vehicles, stationary battery energy storage devices from home to grid-scale, solar panels and solar shingles, and related products and services. Tesla was incorporated in July 2003 by Martin Eberhard and Marc Tarpenning as Tesla Motors. The company's name is a tribute to inventor and electrical engineer Nikola Tesla. In February 2004 Elon Musk joined as the company's largest shareholder and in 2008 he was named CEO. In 2008, the company began production of its first car model, the Roadster sports car, followed by the Model S sedan in 2012, the Model X SUV in 2015, the Model 3 sedan in 2017, the Model Y crossover in 2020, the Tesla Semi truck in 2022 and the Cybertruck pickup truck in 2023. The Model 3 is the all-time bestselling plug-in electric car worldwide, and in June 2021 became the first electric car to sell 1 million units globally. In 2023, the Model Y was the best-selling vehicle, of any kind, globally."
     }
   },
-  BABA: { // Adjusted the name for consistency in JavaScript naming conventions
+  BABA: { 
     lastPrice: 78.23,
     openPrice: 78.34,
     lowPrice: 75.73,

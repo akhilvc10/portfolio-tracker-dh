@@ -1,4 +1,3 @@
-// ThemeSwitch.tsx
 import { useEffect, useState } from "react";
 import { Switch } from "@headlessui/react";
 import { SunIcon } from "@heroicons/react/24/solid";

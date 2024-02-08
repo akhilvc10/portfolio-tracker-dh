@@ -6,11 +6,14 @@ import { Series } from "@/types";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const adjustDataForTab = (data: Series[], tabValue: string): Series[] => {
-	// Your adjustment logic here
+	console.log(
+		"🚀 ~ file: TabsWithStockChart.tsx ~ line 9 ~ adjustDataForTab ~ tabValue",
+		tabValue
+	);
+
 	return data;
 };
 
-// Define the props for the component
 interface TabsWithStockChartProps {
 	data: Series[];
 }

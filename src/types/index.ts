@@ -23,7 +23,7 @@ export type CompanyInfo = {
 };
 
 export type StockData = {
-  lastPrice: number | string; // Assuming the mix of types was intentional
+  lastPrice: number | string; 
   openPrice: number | string;
   lowPrice: number | string;
   change: number | string;

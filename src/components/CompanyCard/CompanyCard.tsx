@@ -2,17 +2,15 @@ import { cn } from "@/lib/utils";
 import { MouseEventHandler } from "react";
 import { Badge } from "../ui/badge";
 
-// Define the types for the props
 interface CompanyCardProps {
 	symbol: string;
 	companyName: string;
-	stockValue: string;
-	stockChange: string;
+	stockValue: string | number;
+	stockChange: string | number;
 	stockChangeDirection: "increase" | "decrease";
 	onClickCard: MouseEventHandler<HTMLDivElement> | undefined;
 }
 
-// Define the Card component with props
 const CompanyCard: React.FC<CompanyCardProps> = ({
 	symbol,
 	companyName,
@@ -47,12 +45,10 @@ const CompanyCard: React.FC<CompanyCardProps> = ({
 				</span>
 			</div>
 
-			{/* Stock value */}
 			<div className="mb-2 text-xl font-bold text-typography-2">
 				{stockValue}
 			</div>
 
-			{/* Stock change */}
 			<div className={`${stockChangeColor} text-sm`}>
 				<span>{stockChangeIcon}</span> {stockChange}
 			</div>

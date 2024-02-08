@@ -59,11 +59,14 @@ export default function HomePage() {
 					</div>
 
 					<div className="space-y-2">
-						<StockCard symbol={dataSet?.companyInfo.symbol} />
-
-						<AboutCompanyAccordion
-							description={dataSet?.companyInfo.description}
-						/>
+						{dataSet?.companyInfo.symbol || dataSet?.companyInfo.description ? (
+							<>
+								<StockCard symbol={dataSet.companyInfo.symbol} />
+								<AboutCompanyAccordion
+									description={dataSet.companyInfo.description}
+								/>
+							</>
+						) : null}
 					</div>
 				</div>
 			</div>

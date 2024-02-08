@@ -1,7 +1,11 @@
 import logo from "@/assets/logo.png";
 import { cn } from "@/lib/utils";
 
-export default function Logo({ classNames }) {
+interface LogoProps {
+	classNames?: string;
+}
+
+const Logo: React.FC<LogoProps> = ({ classNames }) => {
 	return (
 		<div
 			className={cn(
@@ -14,4 +18,6 @@ export default function Logo({ classNames }) {
 			<p className="text-typography-2 font-primary">GrowFolio</p>
 		</div>
 	);
-}
+};
+
+export default Logo;

@@ -4,7 +4,14 @@ import {
 	AccordionItem,
 	AccordionTrigger
 } from "@/components/ui/accordion";
-export default function AboutCompanyAccordion({ description }) {
+
+interface AboutCompanyAccordionProps {
+	description: string;
+}
+
+const AboutCompanyAccordion: React.FC<AboutCompanyAccordionProps> = ({
+	description
+}) => {
 	return (
 		<Accordion
 			type="single"
@@ -19,4 +26,6 @@ export default function AboutCompanyAccordion({ description }) {
 			</AccordionItem>
 		</Accordion>
 	);
-}
+};
+
+export default AboutCompanyAccordion;
