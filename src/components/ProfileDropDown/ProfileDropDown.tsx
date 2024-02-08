@@ -8,12 +8,19 @@ import {
 	DropdownMenuSeparator,
 	DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
+import { useAuth } from "@/hooks/useAuth";
 
 export function ProfileDropDown() {
 	const navigate = useNavigate();
+	const { logout } = useAuth();
 
 	const onClickProfile = () => {
 		navigate("/profile");
+	};
+
+	const onClickLogoutHandler = () => {
+		navigate("/");
+		logout();
 	};
 
 	return (
@@ -31,7 +38,9 @@ export function ProfileDropDown() {
 				<DropdownMenuLabel>My Account</DropdownMenuLabel>
 				<DropdownMenuItem onClick={onClickProfile}>Profile</DropdownMenuItem>
 				<DropdownMenuSeparator />
-				<DropdownMenuItem>Log out</DropdownMenuItem>
+				<DropdownMenuItem onClick={onClickLogoutHandler}>
+					Log out
+				</DropdownMenuItem>
 			</DropdownMenuContent>
 		</DropdownMenu>
 	);

@@ -6,9 +6,11 @@ import NoMatch from "./pages/NoMatch";
 import ProfilePage from "./pages/ProfilePage";
 import LoginPage from "./pages/LoginPage";
 import UnAuthLayout from "./layouts/UnAuthLayout";
+import { useAuth } from "./hooks/useAuth";
 
 export default function App() {
-	const isLoggedIn = false;
+	const { isLoggedIn } = useAuth();
+
 	return (
 		<Routes>
 			{isLoggedIn ? (

@@ -90,3 +90,4 @@ svg text {
 .nivo-axis-label {
   fill: #333 !important; /* Overrides other styles due to specificity */
 }
+
