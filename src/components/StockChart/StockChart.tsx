@@ -39,12 +39,12 @@ const ResponsiveNivoLine: React.FC<ResponsiveNivoLineProps> = ({ data }) => {
 					axis: "y",
 					value: highestValue.y,
 					lineStyle: {
-						stroke: "gray",
-						strokeWidth: 1,
+						stroke: "var(--border-color)",
+						strokeWidth: 2,
 						strokeDasharray: "3 3"
 					},
 					textStyle: {
-						fill: "black",
+						fill: "var(--color-typography-1)",
 						fontSize: 12,
 						fontWeight: "bold"
 					},
@@ -94,6 +94,18 @@ const ResponsiveNivoLine: React.FC<ResponsiveNivoLineProps> = ({ data }) => {
 						stroke: "#ddd",
 						strokeWidth: 1,
 						strokeDasharray: "4 4"
+					}
+				},
+				tooltip: {
+					container: {
+						background: "var(--card-bg)"
+					}
+				},
+				axis: {
+					ticks: {
+						text: {
+							fill: "var(--color-typography-1)"
+						}
 					}
 				}
 			}}

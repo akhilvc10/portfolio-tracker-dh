@@ -26,7 +26,9 @@ export function delay(time: number) {
 
 
 export function generateStockDataForTimeframe(baseValue: number, timeframe: Timeframe, stockSymbol: string): Series[] {
-  console.log("🚀 ~ file: utils.ts ~ line 28 ~ generateStockDataForTimeframe ~ timeframe", timeframe)
+
+  const roundedBaseValue =  Math.floor(baseValue);
+
   const timeframes: Record<Timeframe, { points: number; interval: number }> = {
     "1D": { points: 7, interval: 60 }, // 7 points, 1-hour intervals
     "5D": { points: 5 * 7, interval: 60 }, // 5 days of 7 points, 1-hour intervals
@@ -44,8 +46,8 @@ export function generateStockDataForTimeframe(baseValue: number, timeframe: Time
   const data: DataPoint[] = [];
   for (let i = 0; i < points; i++) {
     const fluctuation = (Math.random() - 0.5) * 2; // Random fluctuation between -1 and 1
-    const change = fluctuation * baseValue * 0.005; // Max fluctuation is 0.5% of the baseValue
-    const stockPrice = baseValue + change;
+    const change = fluctuation *  roundedBaseValue * 0.005; // Max fluctuation is 0.5% of the baseValue
+    const stockPrice = roundedBaseValue + change;
 
     data.push({
       x: new Date(currentTime).toISOString(),

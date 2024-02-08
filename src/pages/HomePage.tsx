@@ -1,4 +1,5 @@
 import { staticData } from "@/api/data";
+import AboutCompanyAccordion from "@/components/AboutCompanyAccordion/AboutCompanyAccordion";
 import CompanyVerticalList from "@/components/CompanyVerticalList/CompanyVerticalList";
 import NewsSection from "@/components/NewsSection/NewsSection";
 import StockCard from "@/components/StockCard/StockCard";
@@ -72,8 +73,6 @@ const data: Series[] = [
 	}))
 }));
 
-console.log("data 1", data);
-
 type Params = {
 	symbol: string;
 };
@@ -107,6 +106,10 @@ export default function HomePage() {
 				windowParam,
 				dataSet.companyInfo.symbol
 			);
+			console.log(
+				"🚀 ~ file: HomePage.tsx ~ line 109 ~ useEffect ~ graphData",
+				graphData
+			);
 			setGraphDataSet(graphData);
 		}
 	}, [windowParam, dataSet?.lastPrice, dataSet?.companyInfo?.symbol]);
@@ -120,15 +123,13 @@ export default function HomePage() {
 		setDataSet(stockData ? stockData[stockSymbol] : null);
 	}, [stockSymbol]);
 
-	console.log("graphDataSet", graphDataSet);
-
 	return (
-		<div className="bg-gray-100">
+		<div className="bg-bg-color">
 			<div className="mx-20">
 				<CompanyVerticalList data={companyData} />
 			</div>
 
-			<div className="container rounded-[10px] bg-white p-10">
+			<div className="container rounded-[10px] bg-card-bg p-10">
 				<div className="flex flex-col items-start justify-between border-b lg:flex-row lg:items-center">
 					<div className="flex w-full flex-col">
 						<div className="flex items-center justify-between">
@@ -155,7 +156,7 @@ export default function HomePage() {
 				<div className="grid grid-cols-1 gap-4 py-4 lg:grid-cols-3">
 					<div className="lg:col-span-2">
 						<div>
-							{graphDataSet.length ? (
+							{graphDataSet?.length ? (
 								<TabsWithStockChart data={graphDataSet} />
 							) : (
 								<>Loading...</>
@@ -172,8 +173,11 @@ export default function HomePage() {
 					</div>
 
 					<div className="space-y-2">
-						<StockCard />
-						<StockCard />
+						<StockCard symbol={dataSet?.companyInfo.symbol} />
+
+						<AboutCompanyAccordion
+							description={dataSet?.companyInfo.description}
+						/>
 					</div>
 				</div>
 			</div>

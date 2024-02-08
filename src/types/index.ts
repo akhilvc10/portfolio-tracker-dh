@@ -7,37 +7,54 @@ export type Series = {
 	id: string;
 	data: DataPoint[];
 };
-
 export type NewsItem = {
   headline: string;
   date: string;
-	source: string;
-	imageUrl: string;
+  source: string;
+  imageUrl: string;
 };
 
-type CompanyInfo = {
+export type CompanyInfo = {
   name: string;
   industry: string;
   ceo: string;
   symbol: string;
+  description: string;
 };
 
 export type StockData = {
   lastPrice: number | string; // Assuming the mix of types was intentional
   openPrice: number | string;
   lowPrice: number | string;
-  change: string | number;
-  percentChange: string | number;
+  change: number | string;
+  percentChange: number | string;
   volume: string;
   date: string;
   stockChangeDirection: "increase" | "decrease";
+  dayRange: string;
+  yearRange: string;
+  marketCap: string;
   news: NewsItem[];
   companyInfo: CompanyInfo;
 };
 
-export type StaticDataTypes = {
-  [key: string]: StockData;
-};
+export interface StockDataTypes {
+  [key: string]: {
+    lastPrice: number | string;
+    openPrice: number | string;
+    lowPrice: number | string;
+    change: number | string;
+    percentChange: number | string;
+    volume: string;
+    date: string;
+    stockChangeDirection: "increase" | "decrease";
+    dayRange: string;
+    yearRange: string;
+    marketCap: string;
+    news: NewsItem[];
+    companyInfo: CompanyInfo;
+  };
+}
 
 export type Timeframe = "1D" | "5D" | "1M" | "6M";
 

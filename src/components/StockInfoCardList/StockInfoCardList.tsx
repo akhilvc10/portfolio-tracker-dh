@@ -11,8 +11,8 @@ const StockInfoCardList: React.FC<StockInfoCardListProps> = ({
 }) => {
 	return (
 		<div className="flex justify-between border-b py-3 last-of-type:border-none">
-			<div className="text-gray-500">{title}</div>
-			<div>{value}</div>
+			<div className="text-typography-1">{title}</div>
+			<div className="text-typography-2">{value}</div>
 		</div>
 	);
 };

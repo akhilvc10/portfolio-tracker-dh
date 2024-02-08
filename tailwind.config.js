@@ -18,6 +18,12 @@ module.exports = {
     },
     extend: {
       colors: {
+        "bg-color": "var(--bg-color)",
+				"card-bg": "var(--card-bg)",
+				"typography-1": "var(--color-typography-1)",
+				"typography-2": "var(--color-typography-2)",
+				"border-color": "var(--border-color)",
+				"p-color": "var(--primary-color)",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

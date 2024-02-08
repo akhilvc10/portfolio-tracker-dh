@@ -28,7 +28,7 @@ const CompanyCard: React.FC<CompanyCardProps> = ({
 	return (
 		<div
 			onClick={onClickCard}
-			className="m-4 max-w-sm cursor-pointer overflow-hidden  rounded-[10px] border border-solid border-[rgb(218,220,224)] bg-white p-6"
+			className="m-4 max-w-sm cursor-pointer bg-card-bg overflow-hidden  rounded-[10px] border border-solid border-border-color  p-6"
 		>
 			{/* Top Bar with status and symbol */}
 			<div className="mb-4 flex items-center">
@@ -39,11 +39,15 @@ const CompanyCard: React.FC<CompanyCardProps> = ({
 				>
 					{symbol}
 				</div>
-				<span className="ml-2 font-semibold text-gray-700">{companyName}</span>
+				<span className="ml-2 font-semibold text-typography-2">
+					{companyName}
+				</span>
 			</div>
 
 			{/* Stock value */}
-			<div className="mb-2 text-xl font-bold text-gray-900">{stockValue}</div>
+			<div className="mb-2 text-xl font-bold text-typography-2">
+				{stockValue}
+			</div>
 
 			{/* Stock change */}
 			<div className={`${stockChangeColor} text-sm`}>

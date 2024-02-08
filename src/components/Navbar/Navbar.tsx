@@ -4,8 +4,10 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
+import logo from "@/assets/logo.png";
+import { ProfileDropDown } from "../ProfileDropDown/ProfileDropDown";
+import ThemeSwitch from "../ThemeSwitch/ThemeSwitch";
 interface NavLink {
 	id: number;
 	url: string;
@@ -43,16 +45,16 @@ export default function Navbar({ links }: { links: Array<NavLink> }) {
 	return (
 		<header className="bg-bg-color flex justify-center text-center text-sm capitalize leading-tight tracking-tight">
 			<nav className="border-b-border-color flex w-full items-center justify-between border-b border-solid px-9 py-4 max-md:max-w-full max-md:flex-wrap max-md:px-5">
-				<div className="border-border-color text-typography-2 dark:text-typography-2 flex items-center justify-center self-stretch whitespace-nowrap rounded-xl border-[1.233px] border-solid p-3 px-5 font-bold uppercase">
-					Portfolio Tracker
+				<div className="border-border-color gap-3 text-typography-2 dark:text-typography-2 flex items-center justify-center self-stretch whitespace-nowrap rounded-xl font-bold uppercase">
+					<div className="w-[35px] h-[35px] ">
+						<img src={logo} className="w-full h-full rounded-sm" alt="" />
+					</div>
+					<p className="text-typography-2">GrowFolio</p>
 				</div>
 				<div className="text-typography-1 my-auto flex justify-between gap-5 self-stretch max-md:max-w-full max-md:flex-wrap">
-					<ul className="hidden w-full justify-center space-x-3 lg:flex">
+					<ul className="hidden w-full justify-center space-x-3 lg:flex text-typography-1">
 						<li>
 							<Link to="/">Home</Link>
-						</li>
-						<li>
-							<Link to={"/stocks"}>Stocks</Link>
 						</li>
 						<li>
 							<Link to="/about">About Us</Link>
@@ -60,10 +62,8 @@ export default function Navbar({ links }: { links: Array<NavLink> }) {
 					</ul>
 				</div>
 				<div className="flex items-center gap-3">
-					<Avatar>
-						<AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-						<AvatarFallback>CN</AvatarFallback>
-					</Avatar>
+					<ThemeSwitch />
+					<ProfileDropDown />
 				</div>
 
 				<Dialog open={mobileMenuOpen}>
