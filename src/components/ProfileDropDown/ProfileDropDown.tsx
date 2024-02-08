@@ -9,6 +9,7 @@ import {
 	DropdownMenuTrigger
 } from "@/components/ui/dropdown-menu";
 import { useAuth } from "@/hooks/useAuth";
+import ThemeSwitch from "../ThemeSwitch/ThemeSwitch";
 
 export function ProfileDropDown() {
 	const navigate = useNavigate();
@@ -28,7 +29,7 @@ export function ProfileDropDown() {
 			<DropdownMenuTrigger asChild>
 				<Avatar className="cursor-pointer">
 					<AvatarImage
-						src="https://api.dicebear.com/7.x/lorelei/svg"
+						src="https://api.dicebear.com/7.x/initials/svg?seed=Akhil"
 						alt="@shadcn"
 					/>
 					<AvatarFallback>CN</AvatarFallback>
@@ -37,6 +38,10 @@ export function ProfileDropDown() {
 			<DropdownMenuContent className="w-56">
 				<DropdownMenuLabel>My Account</DropdownMenuLabel>
 				<DropdownMenuItem onClick={onClickProfile}>Profile</DropdownMenuItem>
+				<DropdownMenuItem className="flex justify-between">
+					Toggle Theme
+					<ThemeSwitch />
+				</DropdownMenuItem>
 				<DropdownMenuSeparator />
 				<DropdownMenuItem onClick={onClickLogoutHandler}>
 					Log out

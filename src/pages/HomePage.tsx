@@ -11,11 +11,11 @@ export default function HomePage() {
 
 	return (
 		<div className="bg-bg-color font-primary">
-			<div className="mx-20">
+			<div className="mx-14 md:mx-20">
 				<CompanyVerticalList data={companyData} />
 			</div>
 
-			<div className="container rounded-[10px] bg-card-bg p-10 border-border-color border border-solid">
+			<div className="container rounded-[10px] bg-card-bg p-5 md:p-10 border-border-color border border-solid">
 				<div className="flex flex-col items-start justify-between border-b lg:flex-row lg:items-center">
 					<div className="flex w-full flex-col">
 						<div className="flex items-center justify-between">
@@ -40,8 +40,8 @@ export default function HomePage() {
 				</div>
 
 				<div className="grid grid-cols-1 gap-4 py-4 lg:grid-cols-3">
-					<div className="lg:col-span-2">
-						<div>
+					<div className="lg:col-span-2 order-last md:order-first">
+						<div className="order-first">
 							{graphDataSet?.length ? (
 								<TabsWithStockChart data={graphDataSet} />
 							) : (
@@ -58,7 +58,7 @@ export default function HomePage() {
 						</div>
 					</div>
 
-					<div className="space-y-2">
+					<div className="space-y-2 order-first md:order-none">
 						{dataSet?.companyInfo.symbol || dataSet?.companyInfo.description ? (
 							<>
 								<StockCard symbol={dataSet.companyInfo.symbol} />

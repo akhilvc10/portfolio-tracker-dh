@@ -46,8 +46,8 @@ export default function Navbar({ links }: { links: Array<NavLink> }) {
 		<header className="bg-card-bg flex justify-center text-center text-sm capitalize leading-tight tracking-tight font-primary">
 			<nav className="border-b-border-color flex w-full items-center justify-between border-b border-solid px-9 py-4 max-md:max-w-full max-md:flex-wrap max-md:px-5">
 				<Logo classNames="" />
-				<div className="text-typography-1 my-auto flex justify-between gap-5 self-stretch max-md:max-w-full max-md:flex-wrap">
-					<ul className="hidden w-full justify-center space-x-3 lg:flex text-typography-1 font-primary">
+				<div className="hidden md:flex text-typography-1 my-auto justify-between gap-5 self-stretch max-md:max-w-full max-md:flex-wrap">
+					<ul className="w-full justify-center space-x-3 lg:flex text-typography-1 font-primary">
 						<li>
 							<Link to="/">Home</Link>
 						</li>
@@ -56,13 +56,27 @@ export default function Navbar({ links }: { links: Array<NavLink> }) {
 						</li>
 					</ul>
 				</div>
-				<div className="flex items-center gap-3">
-					<ThemeSwitch />
-					<ProfileDropDown />
+
+				<div className="flex justify-end items-center gap-3">
+					<div className="flex items-center gap-3">
+						<div className="hidden">
+							<ThemeSwitch />
+						</div>
+						<ProfileDropDown />
+					</div>
+
+					<Button
+						size="icon"
+						onClick={() => setMobileMenuOpen(true)}
+						className="p-1 lg:hidden"
+						variant="outline"
+					>
+						<Bars3Icon className="text-typography-1 " aria-hidden="true" />
+					</Button>
 				</div>
 
 				<Dialog open={mobileMenuOpen}>
-					<DialogContent className="sm:max-w-[425px]">
+					<DialogContent className="w-full h-screen">
 						<div className="fixed inset-0 z-40 bg-gray-600 bg-opacity-75" />{" "}
 						<div className="fixed inset-y-0 z-50 w-full overflow-y-auto bg-gray-800 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-inset sm:ring-white/10 ltr:right-0 rtl:left-0">
 							<div className="flex items-center justify-between">
@@ -70,8 +84,11 @@ export default function Navbar({ links }: { links: Array<NavLink> }) {
 									<span className="sr-only">Strapi</span>
 								</a>
 
-								<Button className="p-4 lg:hidden" variant="outline">
-									<span className="sr-only">Close menu</span>
+								<Button
+									onClick={closeMenu}
+									className="p-4 lg:hidden"
+									variant="outline"
+								>
 									<XMarkIcon className="h-6 w-6" aria-hidden="true" />
 								</Button>
 							</div>
@@ -87,20 +104,10 @@ export default function Navbar({ links }: { links: Array<NavLink> }) {
 										))}
 									</div>
 								</div>
-								{/* <ThemeSwitcher /> */}
 							</div>
 						</div>
 					</DialogContent>
 				</Dialog>
-
-				<Button
-					size="icon"
-					onClick={() => setMobileMenuOpen(true)}
-					className="p-4 lg:hidden"
-					variant="outline"
-				>
-					<Bars3Icon className="h-7 w-7 text-gray-300" aria-hidden="true" />
-				</Button>
 			</nav>
 		</header>
 	);

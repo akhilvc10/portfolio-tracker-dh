@@ -30,7 +30,7 @@ const NewsCard: React.FC<NewsCardProps> = ({
 				</div>
 				{imageUrl && (
 					<div className="flex items-center">
-						<div className="object-fit h-[120px] w-48 rounded-lg bg-gray-200">
+						<div className="object-fit md:h-[120px] h-[180px]  w-full md:w-48 rounded-lg bg-gray-200">
 							<img
 								src={imageUrl}
 								className="h-full w-full rounded-lg"

@@ -27,7 +27,7 @@ const CompanyCard: React.FC<CompanyCardProps> = ({
 	return (
 		<div
 			onClick={onClickCard}
-			className="m-4 max-w-sm cursor-pointer bg-card-bg overflow-hidden  rounded-[10px] border border-solid border-border-color  p-6"
+			className="my-4 max-w-sm cursor-pointer bg-card-bg overflow-hidden  rounded-[10px] border border-solid border-border-color p-6 min-h-[160px] md:min-h-[auto]"
 		>
 			{/* Top Bar with status and symbol */}
 			<div className="mb-4 flex items-center">
