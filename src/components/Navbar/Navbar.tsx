@@ -23,7 +23,7 @@ function MobileNavLink({ url, text, closeMenu }: MobileNavLink) {
 		closeMenu();
 	};
 	return (
-		<li className="flex gap-2 p-2 text-lg">
+		<li className="flex gap-2 p-2 text-lg font-primary">
 			<Link
 				to={url}
 				onClick={handleClick}
@@ -43,16 +43,16 @@ export default function Navbar({ links }: { links: Array<NavLink> }) {
 	};
 
 	return (
-		<header className="bg-bg-color flex justify-center text-center text-sm capitalize leading-tight tracking-tight">
+		<header className="bg-card-bg flex justify-center text-center text-sm capitalize leading-tight tracking-tight font-primary">
 			<nav className="border-b-border-color flex w-full items-center justify-between border-b border-solid px-9 py-4 max-md:max-w-full max-md:flex-wrap max-md:px-5">
 				<div className="border-border-color gap-3 text-typography-2 dark:text-typography-2 flex items-center justify-center self-stretch whitespace-nowrap rounded-xl font-bold uppercase">
 					<div className="w-[35px] h-[35px] ">
 						<img src={logo} className="w-full h-full rounded-sm" alt="" />
 					</div>
-					<p className="text-typography-2">GrowFolio</p>
+					<p className="text-typography-2 font-primary">GrowFolio</p>
 				</div>
 				<div className="text-typography-1 my-auto flex justify-between gap-5 self-stretch max-md:max-w-full max-md:flex-wrap">
-					<ul className="hidden w-full justify-center space-x-3 lg:flex text-typography-1">
+					<ul className="hidden w-full justify-center space-x-3 lg:flex text-typography-1 font-primary">
 						<li>
 							<Link to="/">Home</Link>
 						</li>

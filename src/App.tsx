@@ -4,17 +4,28 @@ import AboutPage from "./pages/AboutPage";
 import DashboardLayout from "./layouts/DashboardLayout";
 import NoMatch from "./pages/NoMatch";
 import ProfilePage from "./pages/ProfilePage";
+import LoginPage from "./pages/LoginPage";
+import UnAuthLayout from "./layouts/UnAuthLayout";
 
 export default function App() {
+	const isLoggedIn = false;
 	return (
 		<Routes>
-			<Route path="/" element={<DashboardLayout />}>
-				<Route index element={<Navigate replace to="/AAPL?window=1D" />} />
-				<Route path=":symbol" element={<HomePage />} />
-				<Route path="about" element={<AboutPage />} />
-				<Route path="profile" element={<ProfilePage />} />
-				<Route path="*" element={<NoMatch />} />
-			</Route>
+			{isLoggedIn ? (
+				<Route path="/" element={<DashboardLayout />}>
+					<Route index element={<Navigate replace to="/AAPL?window=1D" />} />
+					<Route path=":symbol" element={<HomePage />} />
+					<Route path="about" element={<AboutPage />} />
+					<Route path="profile" element={<ProfilePage />} />
+
+					<Route path="*" element={<NoMatch />} />
+				</Route>
+			) : (
+				<Route path="/" element={<UnAuthLayout />}>
+					<Route index element={<Navigate replace to="/login" />} />
+					<Route path="login" element={<LoginPage />} />
+				</Route>
+			)}
 		</Routes>
 	);
 }

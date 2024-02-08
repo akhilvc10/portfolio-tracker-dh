@@ -17,6 +17,9 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily:{
+        'primary': ['Josefin Sans']
+      },
       colors: {
         "bg-color": "var(--bg-color)",
 				"card-bg": "var(--card-bg)",

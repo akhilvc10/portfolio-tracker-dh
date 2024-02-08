@@ -1,135 +1,21 @@
-import { staticData } from "@/api/data";
 import AboutCompanyAccordion from "@/components/AboutCompanyAccordion/AboutCompanyAccordion";
 import CompanyVerticalList from "@/components/CompanyVerticalList/CompanyVerticalList";
 import NewsSection from "@/components/NewsSection/NewsSection";
 import StockCard from "@/components/StockCard/StockCard";
 import TabsWithStockChart from "@/components/TabsWithStockChart/TabsWithStockChart";
 import { Button } from "@/components/ui/button";
-import { generateStockDataForTimeframe } from "@/lib/utils";
-import { Series, StockData, Timeframe } from "@/types";
-import { useEffect, useMemo, useState } from "react";
-import { useLocation, useParams } from "react-router-dom";
-
-const data: Series[] = [
-	{
-		id: "Amazon",
-		color: "hsl(26, 70%, 50%)",
-		data: [
-			{
-				x: "2024-02-06T09:30",
-				y: 170.31
-			},
-			{
-				x: "2024-02-06T10:00",
-				y: 170.5
-			},
-			{
-				x: "2024-02-06T10:30",
-				y: 169.8
-			},
-			{
-				x: "2024-02-06T11:00",
-				y: 169.2
-			},
-			{
-				x: "2024-02-06T11:30",
-				y: 168.8
-			},
-			{
-				x: "2024-02-06T12:00",
-				y: 169.0
-			},
-			{
-				x: "2024-02-06T12:30",
-				y: 168.5
-			},
-			{
-				x: "2024-02-06T13:00",
-				y: 168.75
-			},
-			{
-				x: "2024-02-06T13:30",
-				y: 168.9
-			},
-			{
-				x: "2024-02-06T14:00",
-				y: 168.6
-			},
-			{
-				x: "2024-02-06T14:30",
-				y: 168.4
-			},
-			{
-				x: "2024-02-06T15:00",
-				y: 168.84
-			}
-		]
-	}
-].map((series) => ({
-	...series,
-	data: series.data.map((point) => ({
-		...point,
-		x: new Date(point.x) // Ensure this is a valid date format
-	}))
-}));
-
-type Params = {
-	symbol: string;
-};
+import useHomePage from "@/hooks/useHomePage";
 
 export default function HomePage() {
-	const location = useLocation();
-	const { symbol: stockSymbol } = useParams<Params>();
-	const windowParam =
-		new URLSearchParams(location.search)?.get("window") || "1D";
-
-	const [dataSet, setDataSet] = useState<StockData | null>(() => {
-		const initialData = staticData.find((data) => data[stockSymbol as string]);
-		return initialData ? initialData[stockSymbol as string] : null;
-	});
-	const [graphDataSet, setGraphDataSet] = useState<Series[]>([]);
-
-	const companyData = useMemo(() => {
-		if (staticData.length === 0) return []; // Ensure staticData isn't empty
-		const data = staticData[0];
-		return Object.keys(data).map((key) => ({
-			...data[key].companyInfo,
-			...data[key],
-			symbol: key
-		}));
-	}, []);
-
-	useEffect(() => {
-		if (typeof dataSet?.lastPrice === "number") {
-			const graphData = generateStockDataForTimeframe(
-				dataSet.lastPrice,
-				windowParam,
-				dataSet.companyInfo.symbol
-			);
-			console.log(
-				"🚀 ~ file: HomePage.tsx ~ line 109 ~ useEffect ~ graphData",
-				graphData
-			);
-			setGraphDataSet(graphData);
-		}
-	}, [windowParam, dataSet?.lastPrice, dataSet?.companyInfo?.symbol]);
-
-	useEffect(() => {
-		if (!stockSymbol) {
-			setDataSet(null);
-			return;
-		}
-		const stockData = staticData.find((data) => data[stockSymbol]);
-		setDataSet(stockData ? stockData[stockSymbol] : null);
-	}, [stockSymbol]);
+	const { companyData, dataSet, graphDataSet } = useHomePage();
 
 	return (
-		<div className="bg-bg-color">
+		<div className="bg-bg-color font-primary">
 			<div className="mx-20">
 				<CompanyVerticalList data={companyData} />
 			</div>
 
-			<div className="container rounded-[10px] bg-card-bg p-10">
+			<div className="container rounded-[10px] bg-card-bg p-10 border-border-color border border-solid">
 				<div className="flex flex-col items-start justify-between border-b lg:flex-row lg:items-center">
 					<div className="flex w-full flex-col">
 						<div className="flex items-center justify-between">
@@ -137,7 +23,7 @@ export default function HomePage() {
 								{dataSet?.companyInfo.name}
 							</div>
 							<div className="flex space-x-2">
-								<Button className="rounded border border-gray-300 px-3 py-1">
+								<Button className="rounded border border-border-color px-3 py-1">
 									Share
 								</Button>
 							</div>
