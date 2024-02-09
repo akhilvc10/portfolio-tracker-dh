@@ -1,6 +1,6 @@
 const AboutPage = () => {
 	return (
-		<div className="max-w-4xl mx-auto px-4 py-8 font-primary">
+		<div className="fadeIn max-w-4xl mx-auto px-4 py-8 font-primary">
 			<h2 className="text-3xl font-bold text-center mb-4">About Us</h2>
 			<p className="text-lg text-center mb-6">
 				<strong>Welcome to GrowFolio</strong> - Where Your Financial Growth

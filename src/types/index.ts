@@ -20,6 +20,7 @@ export type CompanyInfo = {
   ceo: string;
   symbol: string;
   description: string;
+  website: string;
 };
 
 export type StockData = {

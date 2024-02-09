@@ -5,7 +5,7 @@ const ProfilePage = () => {
 	const { email } = useAuth();
 
 	return (
-		<div className="flex flex-col h-screen p-4 bg-bg-color">
+		<div className="fadeIn flex flex-col h-screen p-4 bg-bg-color font-primary">
 			<div className="bg-card-bg p-6 flex flex-col  items-center justify-center rounded-[10px] border border-solid border-border-color w-full">
 				<img
 					className="h-32 w-32 rounded-full mx-auto"

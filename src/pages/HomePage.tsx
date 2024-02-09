@@ -1,16 +1,16 @@
 import AboutCompanyAccordion from "@/components/AboutCompanyAccordion/AboutCompanyAccordion";
 import CompanyVerticalList from "@/components/CompanyVerticalList/CompanyVerticalList";
 import NewsSection from "@/components/NewsSection/NewsSection";
+import ShareButton from "@/components/ShareButton/ShareButton";
 import StockCard from "@/components/StockCard/StockCard";
 import TabsWithStockChart from "@/components/TabsWithStockChart/TabsWithStockChart";
-import { Button } from "@/components/ui/button";
 import useHomePage from "@/hooks/useHomePage";
 
 export default function HomePage() {
 	const { companyData, dataSet, graphDataSet } = useHomePage();
 
 	return (
-		<div className="bg-bg-color font-primary">
+		<div className="bg-bg-color font-primary fadeIn">
 			<div className="mx-14 md:mx-20">
 				<CompanyVerticalList data={companyData} />
 			</div>
@@ -23,9 +23,12 @@ export default function HomePage() {
 								{dataSet?.companyInfo.name}
 							</div>
 							<div className="flex space-x-2">
-								<Button className="rounded border border-border-color px-3 py-1">
-									Share
-								</Button>
+								{dataSet?.companyInfo ? (
+									<ShareButton
+										title={`${dataSet?.companyInfo.name} | ${dataSet?.lastPrice}`}
+										text={dataSet?.companyInfo.industry}
+									/>
+								) : null}
 							</div>
 						</div>
 						<div className="flex flex-col justify-center pb-4">

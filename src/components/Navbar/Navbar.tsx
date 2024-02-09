@@ -22,6 +22,7 @@ function MobileNavLink({ url, text, closeMenu }: MobileNavLink) {
 	const handleClick = () => {
 		closeMenu();
 	};
+
 	return (
 		<li className="flex gap-2 p-2 text-lg font-primary">
 			<Link

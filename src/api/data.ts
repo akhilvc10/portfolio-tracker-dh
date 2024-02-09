@@ -1,8 +1,5 @@
 import { StockDataTypes } from "@/types";
 
-
-
-
 export const staticData : StockDataTypes[] = [{
   AAPL: {
       lastPrice: 188.96,
@@ -33,7 +30,8 @@ export const staticData : StockDataTypes[] = [{
         industry: "Technology",
         ceo: "Information Not Specified",
         symbol: "AAPL",
-        description:"Apple Inc., is an American multinational technology company headquartered in Cupertino, California, in Silicon Valley. It designs, develops, and sells consumer electronics, computer software, and online services. Devices include the iPhone, iPad, Mac, Apple Watch, and Apple TV; operating systems include iOS and macOS; and software applications and services include iTunes, iCloud, and Apple Music. As of March 2023, Apple is the world's largest company by market capitalization. In 2022, it was the largest technology company by revenue, with US$394.3 billion. As of June 2022, Apple was the fourth-largest personal computer vendor by unit sales, the largest manufacturing company by revenue, and the second-largest manufacturer of mobile phones in the world. It is one of the Big Five American information technology companies, alongside Alphabet, Amazon, Meta, and Microsoft. Apple was founded as Apple Computer Company on April 1, 1976, to produce and market Steve Wozniak's Apple I personal computer. The company was incorporated by Wozniak and Steve Jobs in 1977."
+        description:"Apple Inc., is an American multinational technology company headquartered in Cupertino, California, in Silicon Valley. It designs, develops, and sells consumer electronics, computer software, and online services. Devices include the iPhone, iPad, Mac, Apple Watch, and Apple TV; operating systems include iOS and macOS; and software applications and services include iTunes, iCloud, and Apple Music. As of March 2023, Apple is the world's largest company by market capitalization. In 2022, it was the largest technology company by revenue, with US$394.3 billion. As of June 2022, Apple was the fourth-largest personal computer vendor by unit sales, the largest manufacturing company by revenue, and the second-largest manufacturer of mobile phones in the world. It is one of the Big Five American information technology companies, alongside Alphabet, Amazon, Meta, and Microsoft. Apple was founded as Apple Computer Company on April 1, 1976, to produce and market Steve Wozniak's Apple I personal computer. The company was incorporated by Wozniak and Steve Jobs in 1977.",
+        website: "htts://apple.com"
       }
   },
   MSFT: {
@@ -65,7 +63,8 @@ export const staticData : StockDataTypes[] = [{
       industry: "Technology",
       ceo: "Not Specified",
       symbol: "MSFT",
-      description: "Microsoft Corporation is an American multinational technology corporation headquartered in Redmond, Washington, United States. Microsoft's best-known software products are the Windows line of operating systems, the Microsoft 365 suite of productivity applications, and the Edge web browser. Its flagship hardware products are the Xbox video game consoles and the Microsoft Surface lineup of touchscreen personal computers. Microsoft ranked No. 14 in the 2022 Fortune 500 rankings of the largest United States corporations by total revenue; it was the world's largest software maker by revenue as of 2022. It is considered one of the Big Five American information technology companies, alongside Alphabet, Amazon, Apple, and Meta. Microsoft was founded by Bill Gates and Paul Allen on April 4, 1975, to develop and sell BASIC interpreters for the Altair 8800. It rose to dominate the personal computer operating system market with MS-DOS in the mid-1980s, followed by Windows. The company's 1986 initial public offering and subsequent rise in its share price created three billionaires and an estimated 12,000 millionaires among Microsoft employees."
+      description: "Microsoft Corporation is an American multinational technology corporation headquartered in Redmond, Washington, United States. Microsoft's best-known software products are the Windows line of operating systems, the Microsoft 365 suite of productivity applications, and the Edge web browser. Its flagship hardware products are the Xbox video game consoles and the Microsoft Surface lineup of touchscreen personal computers. Microsoft ranked No. 14 in the 2022 Fortune 500 rankings of the largest United States corporations by total revenue; it was the world's largest software maker by revenue as of 2022. It is considered one of the Big Five American information technology companies, alongside Alphabet, Amazon, Apple, and Meta. Microsoft was founded by Bill Gates and Paul Allen on April 4, 1975, to develop and sell BASIC interpreters for the Altair 8800. It rose to dominate the personal computer operating system market with MS-DOS in the mid-1980s, followed by Windows. The company's 1986 initial public offering and subsequent rise in its share price created three billionaires and an estimated 12,000 millionaires among Microsoft employees.",
+      website: "htts://microsoft.com"
     }
   },
   NVIDIA: {
@@ -89,8 +88,11 @@ export const staticData : StockDataTypes[] = [{
       industry: "Technology",
       ceo: "Jensen Huang",
       symbol: "NVIDIA" ,
-      description: "Nvidia Corporation is an American multinational technology company, incorporated in Delaware and based in Santa Clara, California. It is a software and fabless company which designs graphics processing units, application programming interfaces for data science and high-performance computing as well as system on a chip units for the mobile computing and automotive market. Nvidia is a dominant supplier of artificial intelligence hardware and software. Its professional line of GPUs are used in workstations for applications in such fields as architecture, engineering and construction, media and entertainment, automotive, scientific research, and manufacturing design. In addition to GPU manufacturing, Nvidia provides an API called CUDA that allows the creation of massively parallel programs which utilize GPUs. They are deployed in supercomputing sites around the world. More recently, it has moved into the mobile computing market, where it produces Tegra mobile processors for smartphones and tablets as well as vehicle navigation and entertainment systems."
-  },},
+      description: "Nvidia Corporation is an American multinational technology company, incorporated in Delaware and based in Santa Clara, California. It is a software and fabless company which designs graphics processing units, application programming interfaces for data science and high-performance computing as well as system on a chip units for the mobile computing and automotive market. Nvidia is a dominant supplier of artificial intelligence hardware and software. Its professional line of GPUs are used in workstations for applications in such fields as architecture, engineering and construction, media and entertainment, automotive, scientific research, and manufacturing design. In addition to GPU manufacturing, Nvidia provides an API called CUDA that allows the creation of massively parallel programs which utilize GPUs. They are deployed in supercomputing sites around the world. More recently, it has moved into the mobile computing market, where it produces Tegra mobile processors for smartphones and tablets as well as vehicle navigation and entertainment systems.",
+      website: "https://www.nvidia.com/en-us/"
+    }
+    
+  },
 
   TSLA: {
     lastPrice: 185.10,
@@ -113,7 +115,8 @@ export const staticData : StockDataTypes[] = [{
       industry: "Automotive",
       ceo: "Elon Musk",
       symbol: "TSLA",
-      description: "Tesla, Inc. is an American multinational automotive and clean energy company headquartered in Austin, Texas, which designs, manufactures and sells electric vehicles, stationary battery energy storage devices from home to grid-scale, solar panels and solar shingles, and related products and services. Tesla was incorporated in July 2003 by Martin Eberhard and Marc Tarpenning as Tesla Motors. The company's name is a tribute to inventor and electrical engineer Nikola Tesla. In February 2004 Elon Musk joined as the company's largest shareholder and in 2008 he was named CEO. In 2008, the company began production of its first car model, the Roadster sports car, followed by the Model S sedan in 2012, the Model X SUV in 2015, the Model 3 sedan in 2017, the Model Y crossover in 2020, the Tesla Semi truck in 2022 and the Cybertruck pickup truck in 2023. The Model 3 is the all-time bestselling plug-in electric car worldwide, and in June 2021 became the first electric car to sell 1 million units globally. In 2023, the Model Y was the best-selling vehicle, of any kind, globally."
+      description: "Tesla, Inc. is an American multinational automotive and clean energy company headquartered in Austin, Texas, which designs, manufactures and sells electric vehicles, stationary battery energy storage devices from home to grid-scale, solar panels and solar shingles, and related products and services. Tesla was incorporated in July 2003 by Martin Eberhard and Marc Tarpenning as Tesla Motors. The company's name is a tribute to inventor and electrical engineer Nikola Tesla. In February 2004 Elon Musk joined as the company's largest shareholder and in 2008 he was named CEO. In 2008, the company began production of its first car model, the Roadster sports car, followed by the Model S sedan in 2012, the Model X SUV in 2015, the Model 3 sedan in 2017, the Model Y crossover in 2020, the Tesla Semi truck in 2022 and the Cybertruck pickup truck in 2023. The Model 3 is the all-time bestselling plug-in electric car worldwide, and in June 2021 became the first electric car to sell 1 million units globally. In 2023, the Model Y was the best-selling vehicle, of any kind, globally.",
+      website: "https://www.tesla.com/en_ae"
     }
   },
   BABA: { 
@@ -138,6 +141,8 @@ export const staticData : StockDataTypes[] = [{
       ceo: "Daniel Zhang",
       symbol: "BABA",
       description: "Alibaba Group Holding Limited, or Alibaba, is a Chinese multinational technology company specializing in e-commerce, retail, Internet, and technology. Founded on 28 June 1999 in Hangzhou, Zhejiang, the company provides consumer-to-consumer, business-to-consumer, and business-to-business sales services via Chinese and global marketplaces, as well as local consumer, digital media and entertainment, logistics and cloud computing services. It owns and operates a diverse portfolio of companies around the world in numerous business sectors. On 19 September 2014, Alibaba's initial public offering on the New York Stock Exchange raised US$25 billion, giving the company a market value of US$231 billion and, by far, then the largest IPO in world history. It is one of the top 10 most valuable corporations, and is named the 31st-largest public company in the world on the Forbes Global 2000 2020 list. In January 2018, Alibaba became the second Asian company to break the US$500 billion valuation mark, after its competitor Tencent. As of 2022, Alibaba has the ninth-highest global brand valuation. Alibaba is one of the world's largest retailers and e-commerce companies.",
+      website: "https://www.alibaba.com/"
+    
     },
   },
   PLTR: {
@@ -161,7 +166,8 @@ export const staticData : StockDataTypes[] = [{
       industry: "Software",
       ceo: "Alexander Karp",
       symbol: "PLTR",
-      description: "Palantir Technologies is a public American company that specializes in software platforms for big data analytics. Headquartered in Denver, Colorado, it was founded by Peter Thiel, Nathan Gettings, Joe Lonsdale, Stephen Cohen, and Alex Karp in 2003. The company's name is derived from The Lord of the Rings where the magical palantíri were , described as indestructible balls of crystal used for communication and to see events in other parts of the world. The company is known for three projects in particular: Palantir Gotham, Palantir Apollo, and Palantir Foundry. Palantir Gotham is used by counter-terrorism analysts at offices in the United States Intelligence Community and United States Department of Defense. In the past, Gotham was used by fraud investigators at the Recovery Accountability and Transparency Board, a former US federal agency which operated from 2009 to 2015. Gotham was also used by cyber analysts at Information Warfare Monitor, a Canadian public-private venture which operated from 2003 to 2012. Palantir Apollo is a platform to facilitate continuous integration/continuous delivery across all environments. "
+      description: "Palantir Technologies is a public American company that specializes in software platforms for big data analytics. Headquartered in Denver, Colorado, it was founded by Peter Thiel, Nathan Gettings, Joe Lonsdale, Stephen Cohen, and Alex Karp in 2003. The company's name is derived from The Lord of the Rings where the magical palantíri were , described as indestructible balls of crystal used for communication and to see events in other parts of the world. The company is known for three projects in particular: Palantir Gotham, Palantir Apollo, and Palantir Foundry. Palantir Gotham is used by counter-terrorism analysts at offices in the United States Intelligence Community and United States Department of Defense. In the past, Gotham was used by fraud investigators at the Recovery Accountability and Transparency Board, a former US federal agency which operated from 2009 to 2015. Gotham was also used by cyber analysts at Information Warfare Monitor, a Canadian public-private venture which operated from 2003 to 2012. Palantir Apollo is a platform to facilitate continuous integration/continuous delivery across all environments. ",
+      website: "https://www.palantir.com/"
     }
   },
   
