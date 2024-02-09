@@ -1,34 +1,16 @@
 import * as React from "react";
 
-import { cn } from "@/lib/utils";
+import { cn, isValidEmail } from "@/lib/utils";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Icons } from "../Icons/Icons";
-import { useAuth } from "@/hooks/useAuth";
-import { useNavigate } from "react-router-dom";
+import useUserAuthForm from "@/hooks/useUserAuthForm";
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
 export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
-	const [isLoading, setIsLoading] = React.useState<boolean>(false);
-	const { login } = useAuth();
-	const navigate = useNavigate();
-
-	async function onSubmit(event: React.SyntheticEvent) {
-		event.preventDefault();
-		setIsLoading(true);
-
-		setTimeout(() => {
-			setIsLoading(false);
-		}, 3000);
-	}
-
-	const navigateToDashboard = () => {
-		navigate("/");
-		login();
-	};
-
+	const { onSubmit, email, isLoading, handleEmailChange } = useUserAuthForm();
 	return (
 		<div className={cn("grid gap-6", className)} {...props}>
 			<form onSubmit={onSubmit}>
@@ -45,9 +27,11 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
 							autoComplete="email"
 							autoCorrect="off"
 							disabled={isLoading}
+							value={email}
+							onChange={handleEmailChange}
 						/>
 					</div>
-					<Button onClick={navigateToDashboard} disabled={isLoading}>
+					<Button disabled={isLoading || !isValidEmail(email)}>
 						{isLoading && (
 							<Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
 						)}

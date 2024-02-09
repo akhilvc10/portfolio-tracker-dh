@@ -16,7 +16,7 @@ export default function HomePage() {
 			</div>
 
 			<div className="container rounded-[10px] bg-card-bg p-5 md:p-10 border-border-color border border-solid">
-				<div className="flex flex-col items-start justify-between border-b lg:flex-row lg:items-center">
+				<div className="flex flex-col items-start justify-between md:border-b lg:flex-row lg:items-center">
 					<div className="flex w-full flex-col">
 						<div className="flex items-center justify-between">
 							<div className="pb-3 text-3xl font-bold">

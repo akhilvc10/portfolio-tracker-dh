@@ -26,7 +26,7 @@ const NewsCard: React.FC<NewsCardProps> = ({
 					>
 						{title}
 					</a>
-					<p className="mt-2 text-[typography-1]">{date}</p>
+					<p className="mt-2 text-sm text-typography-1">{date}</p>
 				</div>
 				{imageUrl && (
 					<div className="flex items-center">

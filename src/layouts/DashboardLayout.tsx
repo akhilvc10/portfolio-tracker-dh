@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer/Footer";
 import Navbar from "@/components/Navbar/Navbar";
 import { Outlet } from "react-router-dom";
 
@@ -13,11 +14,6 @@ export default function DashboardLayout() {
 				id: 2,
 				url: "about",
 				text: "About"
-			},
-			{
-				id: 3,
-				url: "portfolio",
-				text: "Portfolio"
 			}
 		],
 		navbarLogo: {
@@ -37,6 +33,7 @@ export default function DashboardLayout() {
 		<>
 			<Navbar links={navbar.links} />
 			<Outlet />
+			<Footer />
 		</>
 	);
 }

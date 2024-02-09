@@ -76,20 +76,20 @@ export default function Navbar({ links }: { links: Array<NavLink> }) {
 				</div>
 
 				<Dialog open={mobileMenuOpen}>
-					<DialogContent className="w-full h-screen">
-						<div className="fixed inset-0 z-40 bg-gray-600 bg-opacity-75" />{" "}
-						<div className="fixed inset-y-0 z-50 w-full overflow-y-auto bg-gray-800 px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-inset sm:ring-white/10 ltr:right-0 rtl:left-0">
+					<DialogContent className="w-full h-dvh">
+						<div className="fixed inset-0 z-40 bg-bg-color" />{" "}
+						<div className="fixed inset-y-0 z-50 w-full overflow-y-auto  px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-inset sm:ring-white/10 ltr:right-0 rtl:left-0">
 							<div className="flex items-center justify-between">
 								<a href="#" className="-m-1.5 p-1.5">
-									<span className="sr-only">Strapi</span>
+									<Logo />
 								</a>
 
 								<Button
 									onClick={closeMenu}
-									className="p-4 lg:hidden"
+									className="lg:hidden aspect-square p-0"
 									variant="outline"
 								>
-									<XMarkIcon className="h-6 w-6" aria-hidden="true" />
+									<XMarkIcon aria-hidden="true" className="w-6 h-6" />
 								</Button>
 							</div>
 							<div className="mt-6 flow-root">

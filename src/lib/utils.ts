@@ -62,3 +62,9 @@ export function generateStockDataForTimeframe(baseValue: number, timeframe: Time
     data
   }];
 }
+
+
+ // Email validation function
+ export const isValidEmail = (email:string) => {
+  return /\S+@\S+\.\S+/.test(email);
+};

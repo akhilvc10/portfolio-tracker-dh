@@ -10,10 +10,11 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useAuth } from "@/hooks/useAuth";
 import ThemeSwitch from "../ThemeSwitch/ThemeSwitch";
+import { AVATAR_URL } from "@/constants";
 
 export function ProfileDropDown() {
 	const navigate = useNavigate();
-	const { logout } = useAuth();
+	const { logout, email } = useAuth();
 
 	const onClickProfile = () => {
 		navigate("/profile");
@@ -28,10 +29,7 @@ export function ProfileDropDown() {
 		<DropdownMenu>
 			<DropdownMenuTrigger asChild>
 				<Avatar className="cursor-pointer">
-					<AvatarImage
-						src="https://api.dicebear.com/7.x/initials/svg?seed=Akhil"
-						alt="@shadcn"
-					/>
+					<AvatarImage src={`${AVATAR_URL}=${email}`} alt="@shadcn" />
 					<AvatarFallback>CN</AvatarFallback>
 				</Avatar>
 			</DropdownMenuTrigger>
