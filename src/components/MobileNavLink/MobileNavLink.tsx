@@ -15,7 +15,7 @@ const MobileNavLink = ({ url, text, closeMenu }: MobileNavLink) => {
 			<NavLink
 				to={url}
 				onClick={handleClick}
-				className={`mx-4 -mb-1 flex items-center`}
+				className={`mx-4 -mb-1 flex items-center w-full`}
 			>
 				{text}
 			</NavLink>

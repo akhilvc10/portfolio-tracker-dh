@@ -19,10 +19,10 @@ export default function CompanyVerticalList({
 	data
 }: CompanyVerticalListProps) {
 	const navigate = useNavigate();
-	const [clickedCardIndex, setClickedCardIndex] = useState(-1); // Store the index of the clicked card, -1 means no card clicked
+	const [clickedCardIndex, setClickedCardIndex] = useState(-1);
 
 	const onClickCardHandler = (symbol: string, index: number) => {
-		setClickedCardIndex(index === clickedCardIndex ? -1 : index); // Toggle clicked card index
+		setClickedCardIndex(index === clickedCardIndex ? -1 : index);
 		navigate(`/${symbol}?window=1D`);
 	};
 

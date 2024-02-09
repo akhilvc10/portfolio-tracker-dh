@@ -7,8 +7,10 @@ import ProfilePage from "./pages/ProfilePage";
 import LoginPage from "./pages/LoginPage";
 import UnAuthLayout from "./layouts/UnAuthLayout";
 import { useAuth } from "./hooks/useAuth";
+import useScrollToTop from "./hooks/reusable/useScrollToTop";
 
 export default function App() {
+	useScrollToTop();
 	const { isLoggedIn } = useAuth();
 
 	const renderRoutes = () => {
