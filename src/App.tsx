@@ -11,9 +11,9 @@ import { useAuth } from "./hooks/useAuth";
 export default function App() {
 	const { isLoggedIn } = useAuth();
 
-	return (
-		<Routes>
-			{isLoggedIn ? (
+	const returnRoutes = () => {
+		if (isLoggedIn) {
+			return (
 				<Route path="/" element={<DashboardLayout />}>
 					<Route index element={<Navigate replace to="/AAPL?window=1D" />} />
 					<Route path=":symbol" element={<HomePage />} />
@@ -22,12 +22,14 @@ export default function App() {
 
 					<Route path="*" element={<NoMatch />} />
 				</Route>
-			) : (
+			);
+		} else
+			return (
 				<Route path="/" element={<UnAuthLayout />}>
 					<Route index element={<Navigate replace to="/login" />} />
 					<Route path="login" element={<LoginPage />} />
 				</Route>
-			)}
-		</Routes>
-	);
+			);
+	};
+	return <Routes>{returnRoutes()}</Routes>;
 }

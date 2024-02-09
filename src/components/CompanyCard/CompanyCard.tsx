@@ -1,7 +1,7 @@
 import { cn } from "@/lib/utils";
 import { MouseEventHandler } from "react";
 import { Badge } from "../ui/badge";
-
+import classNames from "classnames";
 interface CompanyCardProps {
 	symbol: string;
 	companyName: string;
@@ -9,6 +9,7 @@ interface CompanyCardProps {
 	stockChange: string | number;
 	stockChangeDirection: "increase" | "decrease";
 	onClickCard: MouseEventHandler<HTMLDivElement> | undefined;
+	hasClicked: boolean;
 }
 
 const CompanyCard: React.FC<CompanyCardProps> = ({
@@ -17,17 +18,24 @@ const CompanyCard: React.FC<CompanyCardProps> = ({
 	stockValue,
 	stockChange,
 	stockChangeDirection,
-	onClickCard
+	onClickCard,
+	hasClicked
 }) => {
-	// Determine color based on stock change direction
 	const stockChangeColor =
 		stockChangeDirection === "increase" ? "text-green-500" : "text-red-500";
 	const stockChangeIcon = stockChangeDirection === "increase" ? "▲" : "▼";
 
+	const cardClasses = classNames("", {
+		"border border-2 border-solid border-primary": hasClicked,
+		"": !hasClicked
+	});
+
 	return (
 		<div
 			onClick={onClickCard}
-			className="my-4 max-w-sm cursor-pointer bg-card-bg overflow-hidden  rounded-[10px] border border-solid border-border-color p-6 min-h-[160px] md:min-h-[auto]"
+			className={cn(
+				`my-4 max-w-sm cursor-pointer bg-card-bg overflow-hidden rounded-[10px] border border-solid border-border-color p-6 min-h-[160px] md:min-h-[auto] hover:shadow-md ${cardClasses}`
+			)}
 		>
 			{/* Top Bar with status and symbol */}
 			<div className="mb-4 flex items-center">

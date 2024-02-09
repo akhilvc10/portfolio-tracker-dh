@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 
 import { Dialog, DialogContent } from "@/components/ui/dialog";
@@ -8,36 +8,13 @@ import { useState } from "react";
 import { ProfileDropDown } from "../ProfileDropDown/ProfileDropDown";
 import ThemeSwitch from "../ThemeSwitch/ThemeSwitch";
 import Logo from "../Logo/Logo";
-interface NavLink {
-	id: number;
-	url: string;
-	text: string;
-}
+import { NavLinkTypes } from "@/types";
+import MobileNavLink from "../MobileNavLink/MobileNavLink";
+import useGetNavLinkStyleForHome from "@/hooks/useGetNavLinkStyle";
 
-interface MobileNavLink extends NavLink {
-	closeMenu: () => void;
-}
-
-function MobileNavLink({ url, text, closeMenu }: MobileNavLink) {
-	const handleClick = () => {
-		closeMenu();
-	};
-
-	return (
-		<li className="flex gap-2 p-2 text-lg font-primary">
-			<Link
-				to={url}
-				onClick={handleClick}
-				className={`mx-4 -mb-1 flex items-center`}
-			>
-				{text}
-			</Link>
-		</li>
-	);
-}
-
-export default function Navbar({ links }: { links: Array<NavLink> }) {
+export default function Navbar({ links }: { links: Array<NavLinkTypes> }) {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+	const { getNavLinkStyleForHome } = useGetNavLinkStyleForHome();
 
 	const closeMenu = () => {
 		setMobileMenuOpen(false);
@@ -47,13 +24,22 @@ export default function Navbar({ links }: { links: Array<NavLink> }) {
 		<header className="bg-card-bg flex justify-center text-center text-sm capitalize leading-tight tracking-tight font-primary">
 			<nav className="border-b-border-color flex w-full items-center justify-between border-b border-solid px-9 py-4 max-md:max-w-full max-md:flex-wrap max-md:px-5">
 				<Logo classNames="" />
-				<div className="hidden md:flex text-typography-1 my-auto justify-between gap-5 self-stretch max-md:max-w-full max-md:flex-wrap">
-					<ul className="w-full justify-center space-x-3 lg:flex text-typography-1 font-primary">
+				<div className="hidden md:flex  my-auto justify-between gap-5 self-stretch max-md:max-w-full max-md:flex-wrap">
+					<ul className="w-full justify-center space-x-3 lg:flex  font-primary">
 						<li>
-							<Link to="/">Home</Link>
+							<NavLink to="/" style={getNavLinkStyleForHome("/")}>
+								Home
+							</NavLink>
 						</li>
 						<li>
-							<Link to="/about">About Us</Link>
+							<NavLink
+								to="/about"
+								className={({ isActive }) =>
+									isActive ? "font-bold text-primary" : ""
+								}
+							>
+								About Us
+							</NavLink>
 						</li>
 					</ul>
 				</div>
@@ -72,7 +58,11 @@ export default function Navbar({ links }: { links: Array<NavLink> }) {
 						className="p-1 lg:hidden"
 						variant="outline"
 					>
-						<Bars3Icon className="text-typography-1 " aria-hidden="true" />
+						<Bars3Icon
+							color="var(--color-typography-1)"
+							className="text-typography-1"
+							aria-hidden="true"
+						/>
 					</Button>
 				</div>
 

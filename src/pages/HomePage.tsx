@@ -26,7 +26,7 @@ export default function HomePage() {
 								{dataSet?.companyInfo ? (
 									<ShareButton
 										title={`${dataSet?.companyInfo.name} | ${dataSet?.lastPrice}`}
-										text={dataSet?.companyInfo.industry}
+										text={`${dataSet?.companyInfo.name} | ${dataSet?.lastPrice}`}
 									/>
 								) : null}
 							</div>

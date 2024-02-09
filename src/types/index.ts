@@ -59,4 +59,10 @@ export interface StockDataTypes {
 
 export type Timeframe = "1D" | "5D" | "1M" | "6M";
 
+export interface NavLinkTypes {
+	id: number;
+	url: string;
+	text: string;
+}
+
 

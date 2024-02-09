@@ -9,6 +9,7 @@ import {
 	CarouselPrevious
 } from "@/components/ui/carousel";
 import { CompanyDataItem } from "@/hooks/useHomePage";
+import { useState } from "react";
 
 interface CompanyVerticalListProps {
 	data: CompanyDataItem[];
@@ -18,8 +19,10 @@ export default function CompanyVerticalList({
 	data
 }: CompanyVerticalListProps) {
 	const navigate = useNavigate();
+	const [clickedCardIndex, setClickedCardIndex] = useState(-1); // Store the index of the clicked card, -1 means no card clicked
 
-	const onClickCardHandler = (symbol: string) => {
+	const onClickCardHandler = (symbol: string, index: number) => {
+		setClickedCardIndex(index === clickedCardIndex ? -1 : index); // Toggle clicked card index
 		navigate(`/${symbol}?window=1D`);
 	};
 
@@ -39,7 +42,8 @@ export default function CompanyVerticalList({
 							stockValue={company.lastPrice}
 							stockChange={company.change}
 							stockChangeDirection={company.stockChangeDirection}
-							onClickCard={() => onClickCardHandler(company.symbol)}
+							onClickCard={() => onClickCardHandler(company.symbol, index)}
+							hasClicked={index === clickedCardIndex}
 						/>
 					</CarouselItem>
 				))}
