@@ -19,7 +19,6 @@ export default function App() {
 					<Route path=":symbol" element={<HomePage />} />
 					<Route path="about" element={<AboutPage />} />
 					<Route path="profile" element={<ProfilePage />} />
-
 					<Route path="*" element={<NoMatch />} />
 				</Route>
 			);

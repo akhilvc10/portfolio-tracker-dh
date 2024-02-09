@@ -55,12 +55,12 @@ export default function Navbar({ links }: { links: Array<NavLinkTypes> }) {
 					<Button
 						size="icon"
 						onClick={() => setMobileMenuOpen(true)}
-						className="p-1 lg:hidden"
-						variant="outline"
+						className="p-1 lg:hidden bg-bg-color text-typography-1"
+						variant="ghost"
 					>
 						<Bars3Icon
 							color="var(--color-typography-1)"
-							className="text-typography-1"
+							className="!text-typography-1"
 							aria-hidden="true"
 						/>
 					</Button>
