@@ -11,7 +11,7 @@ import { useAuth } from "./hooks/useAuth";
 export default function App() {
 	const { isLoggedIn } = useAuth();
 
-	const returnRoutes = () => {
+	const renderRoutes = () => {
 		if (isLoggedIn) {
 			return (
 				<Route path="/" element={<DashboardLayout />}>
@@ -30,5 +30,5 @@ export default function App() {
 				</Route>
 			);
 	};
-	return <Routes>{returnRoutes()}</Routes>;
+	return <Routes>{renderRoutes()}</Routes>;
 }

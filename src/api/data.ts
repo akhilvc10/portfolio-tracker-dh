@@ -35,8 +35,8 @@ export const staticData : StockDataTypes[] = [{
       }
   },
   MSFT: {
-    lastPrice: "405.49",
-    openPrice: "405.66",
+    lastPrice: 405.49,
+    openPrice: 405.66,
     lowPrice: "402.91",
     change: "-0.16",
     percentChange: "-0.04%",

@@ -24,18 +24,23 @@ const TabsWithStockChart: React.FC<TabsWithStockChartProps> = ({ data }) => {
 	const windowParam = searchParams.get("window"); // Get the "window" parameter
 
 	const [activeTab, setActiveTab] = useState<string>(windowParam || "1D");
+	console.log(
+		"🚀 ~ file: TabsWithStockChart.tsx ~ line 27 ~ activeTab",
+		activeTab
+	);
 
 	const navigate = useNavigate();
 
 	useEffect(() => {
-		// This effect ensures that the component responds to direct URL entries and URL changes
+		// Only respond to URL search parameter changes
 		const currentWindowParam = new URLSearchParams(location.search).get(
 			"window"
 		);
 		if (currentWindowParam && currentWindowParam !== activeTab) {
 			setActiveTab(currentWindowParam);
+			// Potentially unnecessary to call onChangeTab here if we're just syncing state
 		}
-	}, [location, activeTab]);
+	}, [location.search]); // Remove activeTab from dependencies to focus on URL changes
 
 	const adjustedChartData: Series[] = useMemo(
 		() => adjustDataForTab(data, activeTab),
@@ -50,7 +55,7 @@ const TabsWithStockChart: React.FC<TabsWithStockChartProps> = ({ data }) => {
 	const tabValues = ["1D", "5D", "1M", "6M", "YTD", "1Y", "5Y", "MAX"];
 
 	return (
-		<Tabs defaultValue={activeTab} onValueChange={onChangeTab}>
+		<Tabs key={activeTab} defaultValue={activeTab} onValueChange={onChangeTab}>
 			<TabsList className="grid grid-cols-8 lg:grid-cols-12">
 				{tabValues.map((tabValue) => (
 					<TabsTrigger key={tabValue} value={tabValue}>

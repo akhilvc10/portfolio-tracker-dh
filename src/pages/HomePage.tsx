@@ -4,9 +4,11 @@ import NewsSection from "@/components/NewsSection/NewsSection";
 import ShareButton from "@/components/ShareButton/ShareButton";
 import StockCard from "@/components/StockCard/StockCard";
 import TabsWithStockChart from "@/components/TabsWithStockChart/TabsWithStockChart";
+import useScrollToTop from "@/hooks/reusable/useScrollToTop";
 import useHomePage from "@/hooks/useHomePage";
 
 export default function HomePage() {
+	useScrollToTop();
 	const { companyData, dataSet, graphDataSet } = useHomePage();
 
 	return (
@@ -35,9 +37,6 @@ export default function HomePage() {
 							<div className="text-2xl font-semibold text-green-500">
 								{dataSet?.lastPrice} (${dataSet?.percentChange}%)
 							</div>
-							{/* <div className="text-sm text-gray-600">
-								Pre-market: $187.85 (${}%) +$0.17
-							</div> */}
 						</div>
 					</div>
 				</div>

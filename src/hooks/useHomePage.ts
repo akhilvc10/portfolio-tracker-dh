@@ -21,11 +21,8 @@ const useHomePage = () => {
 	const windowParam =
 		new URLSearchParams(location.search)?.get("window") as Timeframe || "1D";
 
-	const [dataSet, setDataSet] = useState<StockData | null>(() => {
-		const initialData = staticData.find((data) => data[stockSymbol as string]);
-		return initialData ? initialData[stockSymbol as string] : null;
-	});
-	const [graphDataSet, setGraphDataSet] = useState<Series[]>([]);
+	const [dataSet, setDataSet] = useState<StockData | null>(null);
+  const [graphDataSet, setGraphDataSet] = useState<Series[]>([]);
 
 	const companyData = useMemo<CompanyDataItem[]>(() => {
 		if (staticData.length === 0) return []; 
@@ -37,25 +34,31 @@ const useHomePage = () => {
 		}));
 	}, []);
 
-	useEffect(() => {
-		if (typeof dataSet?.lastPrice === "number") {
-			const graphData = generateStockDataForTimeframe(
-				dataSet.lastPrice,
-				windowParam,
-				dataSet.companyInfo.symbol
-			);
-			setGraphDataSet(graphData);
-		}
-	}, [windowParam, dataSet?.lastPrice, dataSet?.companyInfo?.symbol]);
+	
 
 	useEffect(() => {
-		if (!stockSymbol) {
+		if (stockSymbol !== undefined) {
+			const stockData = staticData.find((data) => data[stockSymbol]);
+			setDataSet(stockData ? stockData[stockSymbol] : null);
+		} else {
 			setDataSet(null);
-			return;
 		}
-		const stockData = staticData.find((data) => data[stockSymbol]);
-		setDataSet(stockData ? stockData[stockSymbol] : null);
 	}, [stockSymbol]);
+	
+	useEffect(() => {
+   
+    if (dataSet && typeof dataSet.lastPrice === "number") {
+      const graphData = generateStockDataForTimeframe(
+        dataSet.lastPrice,
+        windowParam,
+        dataSet.companyInfo.symbol
+      );
+      setGraphDataSet(graphData);
+    } else {
+  
+      setGraphDataSet([]);
+    }
+  }, [windowParam, dataSet]);
 
 
   return {
