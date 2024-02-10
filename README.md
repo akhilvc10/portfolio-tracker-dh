@@ -1,30 +1,80 @@
-# React + TypeScript + Vite
+# GrowFolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Introduction
 
-Currently, two official plugins are available:
+[GrowFolio](https://growfolio.vercel.app/) is a stock portfolio tracker web application built with the robust React framework, powered by Vite and fully implemented in TypeScript. Designed as a Progressive Web App (PWA), GrowFolio offers a seamless and responsive experience across all devices, leveraging cutting-edge technologies for optimal performance and user engagement.
+## Technologies Used
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **ReactJS**: [React](https://reactjs.org/) - A JavaScript library for building user interfaces with components, allowing for fast and scalable front-end development.
 
-## Expanding the ESLint configuration
+- **Vite**: [Vite](https://vitejs.dev/) - A modern frontend build tool that provides a faster and leaner development experience for modern web projects.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **TypeScript**: [TypeScript](https://www.typescriptlang.org/) - A strongly typed programming language that builds on JavaScript, giving you better tooling at any scale.
 
-- Configure the top-level `parserOptions` property like this:
+- **Nivo Chart**: [Nivo](https://nivo.rocks/) - A rich set of dataviz components built on top of D3.js and React, capable of rendering a variety of chart types with a simple and consistent API.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+- **TailwindCSS**: [TailwindCSS](https://tailwindcss.com/) - A utility-first CSS framework for rapidly building custom designs without leaving your HTML.
+
+- **Shadcn**: [Shadcn UI](https://ui.shadcn.com/) - A React UI library that provides a collection of high-quality components and templates to kickstart your application designs.
+
+- **Vercel**: [Vercel](https://vercel.com/) - A platform for frontend frameworks and static sites, built to integrate with your headless content, commerce, or database.
+
+## Screenshots
+
+- Home Page Desktop
+![Architecture Diagram](</src/assets//homepage_desktop.png>)
+
+## Router Architecture
+
+![Architecture Diagram](</src/assets//router_diagram.png>)
+
+## Features
+
+- Responsive layout compatible with various screen sizes.
+- Progressive Web App capabilities for offline usage and installability.
+- Theming support with Dark and Light mode preferences.
+- Comprehensive typing with TypeScript for robustness.
+
+## Local Development
+
+To run GrowFolio locally:
+
+```bash
+git clone git@github.com:akhilvc10/portfolio-tracker-dh.git
+cd portfolio-tracker-dh
+pnpm install
+npm run dev
 ```
+## Code Structure
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+- `components/`: Houses all custom components.
+- `components/ui`: Stores core components provided by Shadcn.
+- `constants/`: Contains various constants used throughout the application.
+- `context/`: Includes React context files, particularly for authentication functions.
+- `hooks/`: Comprises all custom and reusable React hooks.
+- `layouts/`: Contains layout components, like `DashboardLayout` and `UnAuthLayout`.
+- `lib/`: Main utility files such as `utils.ts` are found here.
+- `pages/`: Parent pages that are configured in the router.
+- `types/`: Reusable TypeScript types for the application.
+
+## Usage
+
+Enter any valid email to log in; the system checks for format validity. Log out functionality is also available. Login persistence is achieved through `localStorage`. Switch between Dark and Light themes for a customized user interface experience.
+
+## Styling
+
+TailwindCSS has been the primary tool for crafting the application's design. Shadcn components were integrated due to their seamless compatibility with TailwindCSS, ensuring a cohesive look and feel.
+
+## Static Data
+
+A specialized function simulates stock value fluctuations to generate static data, creating a realistic data set over varying time periods.
+
+## Best Practices
+
+- Strongly typed components and utilities with TypeScript.
+- Performance optimization through `useMemo` & `useCallback`.
+- Emphasis on component structuring and reusability for maintainable code.
+- Separation of logic and UI with custom hooks.
+  
+#####Example for custom hook: 
+![Architecture Diagram](<./src/assets//hook_diagram.png>)
