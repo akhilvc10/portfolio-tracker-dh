@@ -21,8 +21,8 @@
 
 ## Screenshots
 
-- Home Page Desktop
-![Architecture Diagram](</src/assets//homepage_desktop.png>)
+- ###### Home Page - Desktop
+![HomePage Desktop](</src/assets//homepage_desktop.png>)
 
 ## Router Architecture
 
@@ -57,9 +57,21 @@ npm run dev
 - `pages/`: Parent pages that are configured in the router.
 - `types/`: Reusable TypeScript types for the application.
 
-## Usage
+### Usage Instructions
 
-Enter any valid email to log in; the system checks for format validity. Log out functionality is also available. Login persistence is achieved through `localStorage`. Switch between Dark and Light themes for a customized user interface experience.
+To begin using our platform, simply enter a valid email address for login; the system will verify the format to ensure it's correct. After logging in, you'll be directed to the homepage, which displays an extensive list of stocks for you to explore.
+
+#### Navigating Stocks
+- **Selecting Stocks**: Navigate through the stocks using the horizontal list located at the top of the page. 
+- **Viewing Stock Information**: Once a stock is selected, detailed information, including a dynamic chart of the stock's performance, will appear below. This allows you to analyze the stock's historical data at a glance.
+
+#### Customizing Your Experience
+- **Timeframe Adjustment**: Customize the chart view by switching between different timeframes. The chart will update automatically to reflect the selected period, providing you with tailored insights into the stock's performance.
+- **Theme Preferences**: Enhance your viewing experience by toggling between Dark and Light themes. This feature allows you to choose the interface appearance that best suits your preference or current lighting conditions.
+
+#### Managing Your Account
+- **Profile Overview**: Access your profile to view the email address you're currently logged in with, ensuring you're always aware of which account you're using.
+- **Logout Functionality**: Securely log out of your account when needed. Our system ensures your login remains persistent through the use of `localStorage`, so you won't have to log in every time you visit.
 
 ## Styling
 
