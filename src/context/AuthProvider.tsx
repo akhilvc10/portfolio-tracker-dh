@@ -1,4 +1,5 @@
 import { createContext, useState, ReactNode, useEffect, useMemo } from "react";
+import { toast } from "sonner";
 
 interface AuthContextType {
 	isLoggedIn: boolean;
@@ -36,6 +37,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 		localStorage.setItem("isLoggedIn", "true");
 		setIsLoggedIn(true);
 		setEmail(email);
+		toast("You're successfully logged in.");
 	};
 
 	const logout = () => {

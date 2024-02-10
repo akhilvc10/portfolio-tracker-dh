@@ -33,7 +33,10 @@ export function generateStockDataForTimeframe(baseValue: number, timeframe: Time
     "1D": { points: 7, interval: 60 }, // 7 points, 1-hour intervals
     "5D": { points: 5 * 7, interval: 60 }, // 5 days of 7 points, 1-hour intervals
     "1M": { points: 22, interval: 24 * 60 }, // Approx 22 trading days, 1 point per day
-    "6M": { points: 6 * 22, interval: 24 * 60 } // 6 months of trading days
+    "6M": { points: 6 * 22, interval: 24 * 60 }, // 6 months of trading days,
+    "YTD": { points: Math.floor((new Date().getMonth() + 1) * 22), interval: 24 * 60 }, // Approx trading days year-to-date, 1 point per day
+    "1Y": { points: 260, interval: 24 * 60 }, // Approx 260 trading days in a year, 1 point per day
+    "5Y": { points: 5 * 260, interval: 5 * 24 * 60 } // 5 years, 1 point per day, increased interval to reduce data density
   };
 
   // Determine the number of points and interval based on the timeframe

@@ -57,7 +57,7 @@ export interface StockDataTypes {
   };
 }
 
-export type Timeframe = "1D" | "5D" | "1M" | "6M";
+export type Timeframe = "1D" | "5D" | "1M" | "6M" | "YTD" | "1Y" | "5Y";
 
 export interface NavLinkTypes {
 	id: number;

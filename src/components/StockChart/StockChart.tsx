@@ -1,6 +1,6 @@
-import { formatAMPM } from "@/lib/utils";
 import { DataPoint, Series } from "@/types";
 import { ResponsiveLine } from "@nivo/line";
+import { format, parseISO } from "date-fns";
 import React from "react";
 
 type Data = Series[];
@@ -25,13 +25,30 @@ interface ResponsiveNivoLineProps {
 const ResponsiveNivoLine: React.FC<ResponsiveNivoLineProps> = ({ data }) => {
 	const highestValue = findHighestValue(data);
 
+	const formatTooltipDate = (value: string | number) => {
+		try {
+			return format(parseISO(value as string), "PPpp");
+		} catch (error) {
+			return value;
+		}
+	};
+
 	return (
 		<ResponsiveLine
 			data={data}
 			curve="linear"
-			xFormat="time:%Y-%m-%dT%H:%M"
 			xScale={{
 				type: "point"
+			}}
+			tooltip={({ point }) => {
+				return (
+					<div className="bg-card-bg p-3 shadow-sm" style={{ color: "black" }}>
+						<strong>
+							x: {formatTooltipDate(point.data.xFormatted)}, y:{" "}
+							{point.data.yFormatted}
+						</strong>
+					</div>
+				);
 			}}
 			markers={[
 				// Existing marker for the highest value
@@ -63,10 +80,12 @@ const ResponsiveNivoLine: React.FC<ResponsiveNivoLineProps> = ({ data }) => {
 			axisRight={null}
 			axisBottom={{
 				format: (v) => {
-					return formatAMPM(v);
+					return format(parseISO(v), "h:mm a");
 				},
-
+				tickValues: 10,
 				legendOffset: 10,
+				tickSize: 5,
+				tickPadding: 10,
 				legendPosition: "middle"
 			}}
 			margin={{ top: 25, right: 0, bottom: 25, left: 25 }}
