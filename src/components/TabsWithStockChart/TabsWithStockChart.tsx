@@ -6,6 +6,7 @@ import { format, parseISO } from "date-fns";
 import { findHighestValue } from "@/lib/utils";
 import { ResponsiveLine } from "@nivo/line";
 import useAxisBottomConfig, { Timeframe } from "@/hooks/useAxisBottomConfig";
+import CustomToolTip from "../charts/utils/CustomToolTip";
 
 interface TabsWithStockChartProps {
 	data: Series[];
@@ -31,6 +32,7 @@ const TabsWithStockChart: React.FC<TabsWithStockChartProps> = ({ data }) => {
 			return dateString;
 		}
 	};
+
 	return (
 		<Tabs key={activeTab} defaultValue={activeTab} onValueChange={onChangeTab}>
 			<TabsList className="grid grid-cols-8 lg:grid-cols-12">
@@ -64,22 +66,23 @@ const TabsWithStockChart: React.FC<TabsWithStockChartProps> = ({ data }) => {
 							);
 						}}
 						markers={[
-							// Existing marker for the highest value
 							{
-								axis: "y",
-								value: highestValue.y,
-								lineStyle: {
-									stroke: "var(--border-color)",
-									strokeWidth: 2,
-									strokeDasharray: "3 3"
-								},
+								axis: "x",
+								value: highestValue.x, // This needs to be the x-coordinate of the highest value
+								legendPosition: "top-right",
 								textStyle: {
 									fill: "var(--color-typography-1)",
 									fontSize: 12,
-									fontWeight: "bold"
+									fontWeight: "bold",
+									backgroundColor: "white",
+									padding: 10
 								},
-								legend: `Highest: ${highestValue.y}`,
-								legendOrientation: "horizontal"
+								lineStyle: {
+									stroke: "#2673CE",
+									strokeWidth: 1,
+									strokeDasharray: "3 3"
+								},
+								legendOrientation: "vertical"
 							}
 						]}
 						yScale={{
@@ -153,6 +156,18 @@ const TabsWithStockChart: React.FC<TabsWithStockChartProps> = ({ data }) => {
 								}
 							}
 						}}
+						layers={[
+							"grid",
+							"markers",
+							"axes",
+							"areas",
+							"crosshair",
+							"lines",
+							"slices",
+							"points",
+							"mesh",
+							CustomToolTip(highestValue)
+						]}
 					/>
 				) : (
 					<div className="flex items-center justify-center">
