@@ -26,7 +26,7 @@ export default function HomePage() {
 				<div className="flex flex-col items-start justify-between md:border-b lg:flex-row lg:items-center">
 					<div className="flex w-full flex-col">
 						<div className="flex-col items-center justify-between md:flex md:flex-col md:items-start">
-							<div className="flex justify-between w-full">
+							<div className="flex justify-between w-full items-center">
 								<Tooltip>
 									<TooltipTrigger asChild>
 										<div className="pb-3 text-3xl font-bold">

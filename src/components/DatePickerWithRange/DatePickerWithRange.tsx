@@ -5,7 +5,7 @@ import { CalendarIcon } from "@radix-ui/react-icons";
 import { format } from "date-fns";
 import { DateRange } from "react-day-picker";
 import { isBefore, isAfter, startOfDay, endOfDay } from "date-fns";
-
+import { Cross1Icon } from "@radix-ui/react-icons";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "@/components/ui/calendar";
@@ -45,8 +45,15 @@ const DatePickerWithRange: React.FC<DatePickerWithRangeProps> = ({
 		return false;
 	};
 
+	const onClickClose = () => {
+		setDate({
+			from: undefined,
+			to: undefined
+		});
+	};
+
 	return (
-		<div className={cn("grid gap-2 w-full md:w-auto", className)}>
+		<div className={cn("flex gap-3 w-full md:w-auto items-center", className)}>
 			<Popover>
 				<PopoverTrigger asChild>
 					<Button
@@ -68,10 +75,30 @@ const DatePickerWithRange: React.FC<DatePickerWithRangeProps> = ({
 								format(date.from, "LLL dd, y")
 							)
 						) : (
-							<span>Pick a date</span>
+							<span>Pick a date range</span>
 						)}
 					</Button>
 				</PopoverTrigger>
+				{date?.from || date?.to ? (
+					<>
+						<Button
+							className="hidden md:flex"
+							onClick={onClickClose}
+							variant="outline"
+						>
+							Remove Filter <Cross1Icon className="h-3 w-3 ml-2" />
+						</Button>
+						<Button
+							className="flex md:hidden aspect-square"
+							onClick={onClickClose}
+							variant="outline"
+							size="icon"
+						>
+							<Cross1Icon className="h-3 w-3" />
+						</Button>
+					</>
+				) : null}
+
 				<PopoverContent className="w-auto p-0" align="start">
 					<Calendar
 						disabled={disabledDate}

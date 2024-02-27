@@ -55,7 +55,7 @@ const TabsWithStockChart: React.FC<TabsWithStockChartProps> = ({ data }) => {
 						tooltip={({ point }) => {
 							return (
 								<div
-									className="bg-card-bg p-3 shadow-sm"
+									className="bg-card-bg md:p-3 p-1 text-[10px] md:text-lg shadow-sm"
 									style={{ color: "var(--color-typography-1)" }}
 								>
 									<strong>
@@ -68,7 +68,7 @@ const TabsWithStockChart: React.FC<TabsWithStockChartProps> = ({ data }) => {
 						markers={[
 							{
 								axis: "x",
-								value: highestValue.x, // This needs to be the x-coordinate of the highest value
+								value: highestValue.x,
 								legendPosition: "top-right",
 								textStyle: {
 									fill: "var(--color-typography-1)",
