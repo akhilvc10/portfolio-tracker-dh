@@ -15,7 +15,7 @@ const useWebShare = ({ title, text }: UseWebShareProps) => {
           text,
           url: window.location.hostname,
         });
-        console.log("Content shared successfully");
+
       } catch (error) {
         console.error("Error sharing content", error);
       }

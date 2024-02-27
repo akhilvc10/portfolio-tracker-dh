@@ -6,7 +6,12 @@ export type DataPoint = {
 export type Series = {
 	id: string;
 	data: DataPoint[];
+  baseValue: number;
 };
+
+export type Data = Series[];
+
+
 export type NewsItem = {
   headline: string;
   date: string;
@@ -57,7 +62,7 @@ export interface StockDataTypes {
   };
 }
 
-export type Timeframe = "1D" | "5D" | "1M" | "6M" | "YTD" | "1Y" | "5Y";
+export type Timeframe = "1D" | "5D" | "1M" | "6M"  | "1Y";
 
 export interface NavLinkTypes {
 	id: number;
@@ -66,3 +71,4 @@ export interface NavLinkTypes {
 }
 
 
+export type DatumValue = string | number;

@@ -1,5 +1,6 @@
 import AboutCompanyAccordion from "@/components/AboutCompanyAccordion/AboutCompanyAccordion";
 import CompanyVerticalList from "@/components/CompanyVerticalList/CompanyVerticalList";
+import DatePickerWithRange from "@/components/DatePickerWithRange/DatePickerWithRange";
 import NewsSection from "@/components/NewsSection/NewsSection";
 import ShareButton from "@/components/ShareButton/ShareButton";
 import StockCard from "@/components/StockCard/StockCard";
@@ -12,7 +13,7 @@ import {
 import useHomePage from "@/hooks/useHomePage";
 
 export default function HomePage() {
-	const { companyData, dataSet, graphDataSet } = useHomePage();
+	const { companyData, dataSet, graphDataSet, setDate, date } = useHomePage();
 
 	return (
 		<div className="bg-bg-color font-primary fadeIn">
@@ -23,22 +24,27 @@ export default function HomePage() {
 			<div className="container rounded-[10px] bg-card-bg p-5 md:p-10 border-border-color border border-solid">
 				<div className="flex flex-col items-start justify-between md:border-b lg:flex-row lg:items-center">
 					<div className="flex w-full flex-col">
-						<div className="flex items-center justify-between">
-							<Tooltip>
-								<TooltipTrigger asChild>
-									<div className="pb-3 text-3xl font-bold">
-										{dataSet?.companyInfo.name}
-									</div>
-								</TooltipTrigger>
-								<TooltipContent>{dataSet?.companyInfo.symbol}</TooltipContent>
-							</Tooltip>
-
-							<div className="flex space-x-2">
+						<div className="flex-col items-center justify-between md:flex md:flex-col md:items-start">
+							<div className="flex justify-between w-full">
+								<Tooltip>
+									<TooltipTrigger asChild>
+										<div className="pb-3 text-3xl font-bold">
+											{dataSet?.companyInfo.name}
+										</div>
+									</TooltipTrigger>
+									<TooltipContent>{dataSet?.companyInfo.symbol}</TooltipContent>
+								</Tooltip>
 								{dataSet?.companyInfo ? (
-									<ShareButton
-										title={`${dataSet?.companyInfo.name} | ${dataSet?.lastPrice}`}
-										text={`${dataSet?.companyInfo.name} | ${dataSet?.lastPrice}`}
-									/>
+									<div className="flex gap-5">
+										<div className="hidden md:flex">
+											<DatePickerWithRange setDate={setDate} date={date} />
+										</div>
+
+										<ShareButton
+											title={`${dataSet?.companyInfo.name} | ${dataSet?.lastPrice}`}
+											text={`${dataSet?.companyInfo.name} | ${dataSet?.lastPrice}`}
+										/>
+									</div>
 								) : null}
 							</div>
 						</div>
@@ -54,7 +60,12 @@ export default function HomePage() {
 					<div className="lg:col-span-2 order-last md:order-first">
 						<div className="order-first">
 							{graphDataSet?.length ? (
-								<TabsWithStockChart data={graphDataSet} />
+								<>
+									<div className="flex md:hidden w-full mb-5">
+										<DatePickerWithRange setDate={setDate} date={date} />
+									</div>
+									<TabsWithStockChart data={graphDataSet} />
+								</>
 							) : (
 								<>Loading...</>
 							)}

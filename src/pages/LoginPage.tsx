@@ -7,16 +7,6 @@ export default function LoginPage() {
 		<div className="fadeIn container font-primary relative h-screen flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0">
 			<div className="relative hidden h-full flex-col text-white lg:flex dark:border-r bg-white bg-opacity-10 backdrop-blur-lg border border-gray-200 shadow-lg rounded-lg">
 				<Logo classNames="items-center justify-center h-screen" />
-				<div className="relative z-20 mt-auto">
-					<blockquote className="space-y-2">
-						<p className="text-lg">
-							&ldquo;This library has saved me countless hours of work and
-							helped me deliver stunning designs to my clients faster than ever
-							before.&rdquo;
-						</p>
-						<footer className="text-sm">Sofia Davis</footer>
-					</blockquote>
-				</div>
 			</div>
 			<div className="h-full">
 				<div className="mx-auto flex w-full h-full flex-col justify-center space-y-6 sm:w-[350px]">

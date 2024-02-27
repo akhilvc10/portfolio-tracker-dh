@@ -1,11 +1,10 @@
-import { DataPoint, Series, Timeframe } from "@/types";
+import { Data, DataPoint, Series, Timeframe } from "@/types";
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
-
 
 export function formatAMPM(dateString: Date) {
   const date = new Date(dateString);
@@ -24,50 +23,114 @@ export function delay(time: number) {
 }
 
 
+export function generateCustomTickValuesFromArray(data: DataPoint[], intervalHours: number) {
+  if (!data || data.length === 0 || intervalHours <= 0) {
+    return [];
+  }
 
-export function generateStockDataForTimeframe(baseValue: number, timeframe: Timeframe, stockSymbol: string): Series[] {
+  const allTimestamps = data.reduce((acc: number[], currentValue: DataPoint) => {
+    if (Array.isArray(currentValue.x)) {
+      acc.push(...currentValue.x.map(date => new Date(date).getTime()));
+    } else {
+      acc.push(new Date(currentValue.x).getTime());
+    }
+    return acc;
+  }, []);
 
-  const roundedBaseValue =  Math.floor(baseValue);
+  const minTimestamp = Math.min(...allTimestamps);
+  const maxTimestamp = Math.max(...allTimestamps);
 
-  const timeframes: Record<Timeframe, { points: number; interval: number }> = {
-    "1D": { points: 7, interval: 60 }, // 7 points, 1-hour intervals
-    "5D": { points: 5 * 7, interval: 60 }, // 5 days of 7 points, 1-hour intervals
-    "1M": { points: 22, interval: 24 * 60 }, // Approx 22 trading days, 1 point per day
-    "6M": { points: 6 * 22, interval: 24 * 60 }, // 6 months of trading days,
-    "YTD": { points: Math.floor((new Date().getMonth() + 1) * 22), interval: 24 * 60 }, // Approx trading days year-to-date, 1 point per day
-    "1Y": { points: 260, interval: 24 * 60 }, // Approx 260 trading days in a year, 1 point per day
-    "5Y": { points: 5 * 260, interval: 5 * 24 * 60 } // 5 years, 1 point per day, increased interval to reduce data density
-  };
+  const intervalMilliseconds = intervalHours * 60 * 60 * 1000;
 
-  // Determine the number of points and interval based on the timeframe
-  const { points, interval } = timeframes[timeframe];
-  const intervalMillis = interval * 60 * 1000; // Convert interval to milliseconds
 
-  let currentTime = new Date(); // Start from current time
-  currentTime.setHours(9, 30, 0, 0); // Set to 09:30 AM
+  const tickValues = [];
+  for (let currentTime = minTimestamp; currentTime <= maxTimestamp; currentTime += intervalMilliseconds) {
+    tickValues.push(new Date(currentTime).toISOString());
+  }
 
-  const data: DataPoint[] = [];
-  for (let i = 0; i < points; i++) {
-    const fluctuation = (Math.random() - 0.5) * 2; // Random fluctuation between -1 and 1
-    const change = fluctuation *  roundedBaseValue * 0.005; // Max fluctuation is 0.5% of the baseValue
-    const stockPrice = roundedBaseValue + change;
+  return tickValues;
+}
 
-    data.push({
-      x: new Date(currentTime).toISOString(),
-      y: parseFloat(stockPrice.toFixed(2))
-    });
 
-    currentTime = new Date(currentTime.getTime() + intervalMillis);
+
+
+export const filterDataForTimeframe = (data: Series, timeframe:Timeframe) => {
+  const now = new Date();
+  let startDate: Date;
+
+  switch (timeframe) {
+    case '1D':
+      startDate = new Date(now.setDate(now.getDate() - 1));
+      break;
+    case '5D':
+      startDate = new Date(now.setDate(now.getDate() - 5));
+      break;
+    case '1M':
+      startDate = new Date(now.setMonth(now.getMonth() - 1));
+      break;
+    default:
+      startDate = new Date(now.setMonth(now.getMonth() - 1));
   }
 
   return [{
-    id: stockSymbol,
-    data
+    ...data,
+    data: data.data.filter(item => new Date(item.x) >= startDate)}];
+};
+
+
+export function generateStockDataForTimeframe(
+    baseValue: number,
+    stockSymbol: string,
+    fromDate?: Date | undefined,
+    toDate?: Date | undefined
+  ): Series[] {
+
+  const now = new Date();
+  const start = fromDate || new Date(now.setFullYear(now.getFullYear() - 1));
+  const end = toDate || new Date();
+
+  let currentTime = start;
+  const data = [];
+
+  while (currentTime <= end) {
+      // Simulate a small change in the stock price
+      const change = (Math.random() - 0.5) * 2; // Random change between -1 and 1
+      const variance = baseValue * 0.005 * change; // Max 0.5% of the baseValue
+      baseValue += variance;
+
+      data.push({
+          x: currentTime.toISOString(),
+          y: parseFloat(baseValue.toFixed(2)) // Keep the stock price to two decimal places
+      });
+
+      // Increment current time by 1 hour
+      currentTime = new Date(currentTime.getTime() + 3600 * 1000);
+  }
+
+  return [{
+      id: stockSymbol,
+      baseValue,
+      data
   }];
 }
 
 
- // Email validation function
+
+export const findHighestValue = (data: Data): DataPoint => {
+	let highest: DataPoint = { x: "", y: 0 };
+	data.forEach((serie) => {
+		serie.data.forEach((d) => {
+			if (d.y > highest.y) {
+				highest = d;
+			}
+		});
+	});
+
+	return highest;
+};
+
+
+
  export const isValidEmail = (email:string) => {
   return /\S+@\S+\.\S+/.test(email);
 };
