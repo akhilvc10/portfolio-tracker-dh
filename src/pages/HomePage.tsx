@@ -13,7 +13,8 @@ import {
 import useHomePage from "@/hooks/useHomePage";
 
 export default function HomePage() {
-	const { companyData, dataSet, graphDataSet, setDate, date } = useHomePage();
+	const { companyData, dataSet, graphDataSet, setDate, date, activeDate } =
+		useHomePage();
 
 	return (
 		<div className="bg-bg-color font-primary fadeIn">
@@ -37,7 +38,11 @@ export default function HomePage() {
 								{dataSet?.companyInfo ? (
 									<div className="flex gap-5">
 										<div className="hidden md:flex">
-											<DatePickerWithRange setDate={setDate} date={date} />
+											<DatePickerWithRange
+												setDate={setDate}
+												date={date}
+												activeDate={activeDate}
+											/>
 										</div>
 
 										<ShareButton
@@ -62,7 +67,11 @@ export default function HomePage() {
 							{graphDataSet?.length ? (
 								<>
 									<div className="flex md:hidden w-full mb-5">
-										<DatePickerWithRange setDate={setDate} date={date} />
+										<DatePickerWithRange
+											setDate={setDate}
+											date={date}
+											activeDate={activeDate}
+										/>
 									</div>
 									<TabsWithStockChart data={graphDataSet} />
 								</>

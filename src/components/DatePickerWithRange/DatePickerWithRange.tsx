@@ -4,6 +4,7 @@ import * as React from "react";
 import { CalendarIcon } from "@radix-ui/react-icons";
 import { format } from "date-fns";
 import { DateRange } from "react-day-picker";
+import { isBefore, isAfter, startOfDay, endOfDay } from "date-fns";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -18,13 +19,32 @@ interface DatePickerWithRangeProps
 	extends React.HTMLAttributes<HTMLDivElement> {
 	setDate: React.Dispatch<React.SetStateAction<DateRange | undefined>>;
 	date: DateRange | undefined;
+	activeDate: {
+		min: string | Date;
+		max: string | Date;
+	};
 }
 
 const DatePickerWithRange: React.FC<DatePickerWithRangeProps> = ({
 	className,
 	setDate,
-	date
+	date,
+	activeDate
 }) => {
+	const startDate = new Date(activeDate?.min);
+	const endDate = new Date(activeDate?.max);
+
+	const disabledDate = (current: Date) => {
+		if (current && activeDate.min && activeDate.max) {
+			const currentDate = startOfDay(current);
+			return (
+				isBefore(currentDate, startOfDay(startDate)) ||
+				isAfter(currentDate, endOfDay(endDate))
+			);
+		}
+		return false;
+	};
+
 	return (
 		<div className={cn("grid gap-2 w-full md:w-auto", className)}>
 			<Popover>
@@ -54,6 +74,7 @@ const DatePickerWithRange: React.FC<DatePickerWithRangeProps> = ({
 				</PopoverTrigger>
 				<PopoverContent className="w-auto p-0" align="start">
 					<Calendar
+						disabled={disabledDate}
 						initialFocus
 						mode="range"
 						defaultMonth={date?.from}

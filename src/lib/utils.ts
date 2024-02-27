@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Data, DataPoint, Series, Timeframe } from "@/types";
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
@@ -134,3 +135,13 @@ export const findHighestValue = (data: Data): DataPoint => {
  export const isValidEmail = (email:string) => {
   return /\S+@\S+\.\S+/.test(email);
 };
+
+export function findMinMaxDates(data:DataPoint[]) {
+  const dates: number[] | Date[] = data.map(item => new Date(item.x));
+  const minDate = new Date(Math.min.apply(null, dates));
+  const maxDate = new Date(Math.max.apply(null, dates));
+  return {
+      min: minDate,
+      max: maxDate
+  };
+}

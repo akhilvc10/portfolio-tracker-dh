@@ -19,7 +19,7 @@ const useAxisBottomConfig = ({ data, timeframe }: { data: Series[], timeframe: T
 
 
     const multiplierMap = {
-      [Timeframe.Daily]: 3,
+      [Timeframe.Daily]: 8,
       [Timeframe.Weekly]: 24,
       [Timeframe.Monthly]: 24 * 5,
       [Timeframe.SixMonths]: 24 * 5 * 3,
